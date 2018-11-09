@@ -1,6 +1,10 @@
 vex::brain Brain;
-vex::motor LeftMotor = vex::motor(vex::PORT1);
-vex::motor RightMotor = vex::motor(vex::PORT10, true);
-vex::motor ArmMotor = vex::motor(vex::PORT8);
-vex::motor ClawMotor = vex::motor(vex::PORT3);
+vex::motor LeftFrontMotor = vex::motor(vex::PORT17);
+vex::motor RightFrontMotor = vex::motor(vex::PORT14);
+vex::motor LeftBackMotor = vex::motor(vex::PORT10);
+vex::motor RightBackMotor = vex::motor(vex::PORT1);
+vex::motor JawMotor = vex::motor(vex::PORT19);
+vex::motor ArmMotor = vex::motor(vex::PORT12);
 vex::controller Ellisons_Controller = vex::controller();
+vex::motor LiftMotor1 = vex::motor(vex::PORT18);
+vex::motor LiftMotor2 = vex::motor(vex::PORT11);
