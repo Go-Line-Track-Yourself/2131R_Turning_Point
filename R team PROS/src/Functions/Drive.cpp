@@ -6,8 +6,8 @@ namespace Drive{
 void mechamdrive (int V1 =0, int V2 =0, int V3 =0, int V4=0){
   LeftFrontMotor.move_velocity(V1);
   LeftBackMotor.move_velocity(V2);
-  RightFrontMotor.move_velocity(-V3);
-  RightBackMotor.move_velocity(-V4);
+  RightFrontMotor.move_velocity(V3);
+  RightBackMotor.move_velocity(V4);
 
 }
 

@@ -3,7 +3,7 @@
 #include "Functions/Feed.hpp"
 #include "Functions/Lift.hpp"
 
-extern void CapMode(){
+void CapMode(){
 
   Drive::tankdrive( -Ellisons_Controller.getAnalog(okapi::ControllerAnalog::leftY),
              -Ellisons_Controller.getAnalog(okapi::ControllerAnalog::rightY),

@@ -24,7 +24,12 @@
   //set Bottom Feed Motor velocity
   int BottomFeedMotorVelocitySetting =13;
 
+
+
 namespace Feed{
+
+  bool Pressed;
+  bool Inverted;
 
 
 //setting velocity for entire feed
@@ -97,17 +102,22 @@ void Auto_Feed() {
     }
 }
 
-//
-void AutoFeed()
-  {
 
-    if(Button.changedToPressed()){
-      Auto_Feed();
+void AutoFeed()  {
+    if (Button.isPressed() && Pressed == true){
+      Pressed = false;
+      Inverted = !Inverted;
     }
 
-    if(Button.changedToReleased()){
-      AutoFeedEnabled = false;
-      BottomMotor.move_velocity(100);
+    if (Button.isPressed() && Pressed == false){
+    Pressed = true;
+    }
+
+    if (Inverted){
+
+    }
+    if(!Inverted){
+
     }
 
   }

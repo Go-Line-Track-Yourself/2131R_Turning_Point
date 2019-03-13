@@ -52,7 +52,7 @@ void Rotater(){
        }
 
        if (!Inverted){
-           Motor.moveAbsolute(100,100);
+           Motor.moveAbsolute(0,100);
        }
 
    }

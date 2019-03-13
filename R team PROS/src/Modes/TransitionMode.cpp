@@ -4,7 +4,7 @@
 
 namespace Mode{
 
-  bool Inverted;
+  bool Inverted=true;
   bool Pressed;
 
 void Transition(){
@@ -16,10 +16,10 @@ void Transition(){
         Pressed = false;
     }
 
-    if (Pressed){
+    if (Inverted){
         FlagMode();
     }
-    if (!Pressed){
+    if (!Inverted){
         CapMode();
     }
 
