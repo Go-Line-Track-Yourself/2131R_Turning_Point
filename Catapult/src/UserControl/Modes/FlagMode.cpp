@@ -4,12 +4,12 @@
 #include "Functions/Feed.hpp"
 #include "Functions/Lift.hpp"
 
-extern void FlagMode(){
+void FlagMode(){
 
-  Drive::tankdrive( Ellisons_Controller.getAnalog(okapi::ControllerAnalog::leftY),
-             Ellisons_Controller.getAnalog(okapi::ControllerAnalog::rightY),
-             Ellisons_Controller.getAnalog(okapi::ControllerAnalog::rightX),
-             Ellisons_Controller.getAnalog(okapi::ControllerAnalog::leftX));
+  Drive::tankdrive( Ellisons_Controller.getAnalog(okapi::ControllerAnalog::leftY)*200,
+             Ellisons_Controller.getAnalog(okapi::ControllerAnalog::rightY)*200,
+             Ellisons_Controller.getAnalog(okapi::ControllerAnalog::rightX)*200,
+             Ellisons_Controller.getAnalog(okapi::ControllerAnalog::leftX)*200);
 
   Feed::AutoFeed();
 

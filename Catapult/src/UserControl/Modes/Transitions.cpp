@@ -4,7 +4,7 @@
 
 namespace Mode{
 
-extern void Transition(){
+void Transition(){
     if (Button.isPressed() && Pressed == false){
           Pressed = true;
           Inverted = !Inverted;

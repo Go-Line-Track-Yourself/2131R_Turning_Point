@@ -5,10 +5,10 @@
 
 void CapMode(){
 
-  Drive::tankdrive( -Ellisons_Controller.getAnalog(okapi::ControllerAnalog::leftY),
-             -Ellisons_Controller.getAnalog(okapi::ControllerAnalog::rightY),
-             -Ellisons_Controller.getAnalog(okapi::ControllerAnalog::rightX),
-             -Ellisons_Controller.getAnalog(okapi::ControllerAnalog::leftX));
+  Drive::tankdrive( -Ellisons_Controller.getAnalog(okapi::ControllerAnalog::leftY)*200,
+             -Ellisons_Controller.getAnalog(okapi::ControllerAnalog::rightY)*200,
+             -Ellisons_Controller.getAnalog(okapi::ControllerAnalog::rightX)*200,
+             -Ellisons_Controller.getAnalog(okapi::ControllerAnalog::leftX)*200);
 
   Lift::ManualLift();
 

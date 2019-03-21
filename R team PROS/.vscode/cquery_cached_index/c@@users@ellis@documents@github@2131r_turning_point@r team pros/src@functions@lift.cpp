@@ -26,12 +26,12 @@ void Flipper(){
     Pressed = false;
   }
 
-    if(Pressed){
+    if(Inverted){
     Motor.moveAbsolute(20,100);
    }
 
-   if(!Pressed){
-    Motor.moveAbsolute(0,100);
+   if(!Inverted){
+    Motor.moveAbsolute(-200,100);
    }
 }
 

@@ -15,6 +15,10 @@ void Puncher(){
        Inverted = !Inverted;
        Run =true;
 
+       if (!Button.isPressed() && Pressed == true) {
+           Pressed = false;
+       }
+
        if (Inverted){
            Target+=charge;
        }
@@ -22,9 +26,7 @@ void Puncher(){
            Target+=fire;
        }
    }
-   if (!Button.isPressed() && Pressed == true) {
-       Pressed = false;
-   }
+
 
    if(Run)
    {

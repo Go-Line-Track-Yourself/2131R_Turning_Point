@@ -26,28 +26,13 @@
 namespace Feed{
 
 
-//setting velocity for entire feed
+//setting velocity for feed
 void setFeedVelocity(int velocity){
-    TopMotor.move_velocity(velocity);
-    BottomMotor.move_velocity(velocity);
-}
+    Motor.move_velocity(velocity);
 
-//setting velocity for bottom feed only
-void setBottomFeedVelocity(int velocity){
-    BottomMotor.move_velocity(velocity);
 }
 
 void Auto_Feed() {
-
-    //for autonomous cap flippingvex::controller Ellisons_Controller = vex::controller();
-    if (BottomFeedReverse)
-    {
-        setBottomFeedVelocity(BottomFeedMotorVelocitySetting);
-    }
-
-    //for usercontrol autofeed
-    else if(!BottomFeedReverse)
-    {
 
     //getting values from light sensors
     BottomSensorValue = Bottom.get_value();
@@ -94,7 +79,7 @@ void Auto_Feed() {
         }
 
     }
-}
+
 
 //
 void AutoFeed()
@@ -106,7 +91,7 @@ void AutoFeed()
 
     if(Button.changedToReleased()){
       AutoFeedEnabled = false;
-      BottomMotor.move_velocity(100);
+      Motor.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
     }
 
   }

@@ -16,8 +16,7 @@ namespace Drive{
 
 //feed motors
 namespace Feed{
-  extern okapi::Motor TopMotor;
-  extern okapi::Motor BottomMotor;
+  extern okapi::Motor Motor;
 }
 
 //catapult motor
