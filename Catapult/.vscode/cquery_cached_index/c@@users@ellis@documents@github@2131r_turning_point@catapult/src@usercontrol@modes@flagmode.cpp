@@ -4,6 +4,7 @@
 #include "Functions/Feed.hpp"
 #include "Functions/Lift.hpp"
 
+namespace Mode{
 void FlagMode(){
 
   Drive::tankdrive( Ellisons_Controller.getAnalog(okapi::ControllerAnalog::leftY)*200,
@@ -15,4 +16,5 @@ void FlagMode(){
 
   Catapult::Catapult();
 
+}
 }

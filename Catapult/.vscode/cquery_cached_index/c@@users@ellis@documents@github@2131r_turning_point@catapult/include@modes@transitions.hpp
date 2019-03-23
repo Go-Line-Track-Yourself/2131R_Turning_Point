@@ -3,8 +3,9 @@
 #include "main.h"
 
 namespace Mode{
-bool Inverted;
-bool Pressed;
+
+void Transition();
+
 }
 
 

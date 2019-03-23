@@ -4,7 +4,12 @@
 
 namespace Mode{
 
+  bool Inverted=true;
+  bool Pressed;
+
+
 void Transition(){
+
     if (Button.isPressed() && Pressed == false){
           Pressed = true;
           Inverted = !Inverted;
@@ -13,10 +18,10 @@ void Transition(){
         Pressed = false;
     }
 
-    if (Pressed){
+    if (Inverted){
         FlagMode();
     }
-    if (!Pressed){
+    if (!Inverted){
         CapMode();
     }
 

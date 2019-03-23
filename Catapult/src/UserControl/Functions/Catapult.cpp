@@ -14,18 +14,21 @@ void Catapult(){
      if (Button.isPressed() && Pressed == false) {
          Pressed = true;
          Inverted = !Inverted;
+
+                  if (Inverted){
+                      Target += Charge;
+                  }
+                  if (!Inverted){
+                      Target += Fire;
+                  }
 }
 
      if (!Button.isPressed() && Pressed == true) {
              Pressed = false;
          }
 
-         if (Inverted){
-             Target += Charge;
-         }
-         if (!Inverted){
-             Target += Fire;
-         }
+
+
 
 if (Run)
 {

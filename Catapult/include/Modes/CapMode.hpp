@@ -4,7 +4,6 @@
 
 namespace Mode{
 
-
 void CapMode();
 
 }

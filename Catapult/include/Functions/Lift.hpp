@@ -8,6 +8,8 @@ namespace Lift{
 void ManualLift();
 void Flipper();
 
+enum class Controller {MANUAL ,FLIPPER, OFF};
+
 }
 
 

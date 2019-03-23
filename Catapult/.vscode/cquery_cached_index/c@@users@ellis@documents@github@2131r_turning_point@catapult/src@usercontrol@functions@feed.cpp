@@ -1,38 +1,38 @@
 #include "Functions/Feed.hpp"
 
-  //Auto Feed control
-  bool AutoFeedEnabled = false;
-  bool BottomFeedReverse=false;
-  bool AutoFiring;
+//Auto Feed control
+bool AutoFeedEnabled = false;
+bool BottomFeedReverse=false;
+bool AutoFiring;
 
-  //Ball locations
-  bool BallInBottom;
-  bool BallInMiddle;
-  bool BallInTop;
+//Ball locations
+bool BallInBottom;
+bool BallInMiddle;
+bool BallInTop;
 
-  //sensor value integers
-  int  BottomSensorValue;
-  int  MiddleSensorValue;
-  int  TopSensorValue;
+//sensor value integers
+int  BottomSensorValue;
+int  MiddleSensorValue;
+int  TopSensorValue;
 
-  //sensor maximums
-  int BottomBallMax = 68;
-  int MiddleBallMax = 50;
-  int TopBallMax = 70;
+//sensor maximums
+int BottomBallMax = 68;
+int MiddleBallMax = 50;
+int TopBallMax = 70;
 
-  //set Bottom Feed Motor velocity
-  int BottomFeedMotorVelocitySetting =13;
+//set Bottom Feed Motor velocity
+int BottomFeedMotorVelocitySetting =13;
 
 namespace Feed{
 
 
-//setting velocity for feed
-void setFeedVelocity(int velocity){
+  //setting velocity for feed
+  void setFeedVelocity(int velocity){
     Motor.move_velocity(velocity);
 
-}
+  }
 
-void Auto_Feed() {
+  void Auto_Feed() {
 
     //getting values from light sensors
     BottomSensorValue = Bottom.get_value();
@@ -53,46 +53,56 @@ void Auto_Feed() {
     else BallInTop = false;
 
 
-        //when there are 2 balls
-        if (BallInBottom && BallInMiddle){
-            setFeedVelocity(0);
-        }
-
-        //when there is one ball in the bottom of the feed
-        if (BallInBottom && !BallInMiddle){
-            setFeedVelocity(95);
-        }
-
-        //when there is one ball in the puncher
-        if (!BallInBottom && BallInMiddle){
-            setFeedVelocity(70);
-        }
-
-        //when there are no balls
-        if (!BallInBottom && !BallInMiddle){
-            setFeedVelocity(95);
-        }
-
-        //when an extra ball skips the bottom sensor and there are two balls in the puncher
-        if (BallInMiddle && BallInTop){
-            setFeedVelocity(-70);
-        }
-
+    //when there are 2 balls
+    if (BallInBottom && BallInMiddle){
+      setFeedVelocity(0);
     }
 
-
-//
-void AutoFeed()
-  {
-
-    if(Button.changedToPressed()){
-      Auto_Feed();
+    //when there is one ball in the bottom of the feed
+    if (BallInBottom && !BallInMiddle){
+      setFeedVelocity(580);
     }
 
-    if(Button.changedToReleased()){
-      AutoFeedEnabled = false;
-      Motor.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+    //when there is one ball in the puncher
+    if (!BallInBottom && BallInMiddle){
+      setFeedVelocity(550);
+    }
+
+    //when there are no balls
+    if (!BallInBottom && !BallInMiddle){
+      setFeedVelocity(590);
+    }
+
+    //when an extra ball skips the bottom sensor and there are two balls in the puncher
+    if (BallInMiddle && BallInTop){
+      setFeedVelocity(-570);
     }
 
   }
-}
+
+  int Pressed=false;
+  int Inverted;
+
+  void AutoFeed() {
+
+
+      if (Button.isPressed() && Pressed == false){
+      Pressed = true;
+      Inverted = !Inverted;
+      }
+
+      else if (!Button.isPressed() && Pressed == true){
+        Pressed = false;
+      }
+
+
+      if (Inverted){
+        Auto_Feed();
+      }
+      if(!Inverted){
+        AutoFeedEnabled = false;
+        Motor.moveVelocity(0);
+      }
+
+    }
+  }

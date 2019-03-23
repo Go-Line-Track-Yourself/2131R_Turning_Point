@@ -4,6 +4,8 @@
 #include "Functions/Feed.hpp"
 #include "Functions/Lift.hpp"
 
+namespace Mode{
+
 void CapMode(){
 
   Drive::tankdrive( -Ellisons_Controller.getAnalog(okapi::ControllerAnalog::leftY)*200,
@@ -15,4 +17,5 @@ void CapMode(){
 
   Lift::Flipper();
 
+}
 }
