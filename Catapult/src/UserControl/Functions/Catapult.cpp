@@ -7,13 +7,14 @@ namespace Catapult{
   bool Run;
 
   int Target;
-  int Charge;
-  int Fire;
+  int Charge=131;
+  int Fire=50;
 
 void Catapult(){
      if (Button.isPressed() && Pressed == false) {
          Pressed = true;
          Inverted = !Inverted;
+         Run = true;
 
                   if (Inverted){
                       Target += Charge;
@@ -27,18 +28,22 @@ void Catapult(){
              Pressed = false;
          }
 
+         Motor.moveAbsolute(Target,100);
+       }
+     }
 
 
 
-if (Run)
+
+/*if (Run)
 {
     if(std::abs(Target-Motor.getPosition())<2){
         Motor.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
         Run = false;
     }
     else{
-      Motor.moveAbsolute(Target,100);
+
     }
 }
 }
-}
+}*/

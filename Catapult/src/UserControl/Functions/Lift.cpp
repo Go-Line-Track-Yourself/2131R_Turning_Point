@@ -60,7 +60,7 @@ void Flipper(){
       Pressed = false;
   }
 
-  else if(FlipperButton.isPressed() && Pressed == false){
+  else if(!FlipperButton.isPressed() && Pressed == false){
     ControllerSet(Controller::FLIPPER);
     position = 0;
     velocity = -100;
