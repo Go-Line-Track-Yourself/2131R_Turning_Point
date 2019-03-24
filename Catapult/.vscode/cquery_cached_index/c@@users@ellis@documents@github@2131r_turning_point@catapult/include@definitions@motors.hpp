@@ -22,6 +22,7 @@ namespace Feed{
 //catapult motor
 namespace Catapult{
   extern okapi::Motor Motor;
+  extern okapi::Motor Motor2;
 }
 //lift motor
 namespace Lift{

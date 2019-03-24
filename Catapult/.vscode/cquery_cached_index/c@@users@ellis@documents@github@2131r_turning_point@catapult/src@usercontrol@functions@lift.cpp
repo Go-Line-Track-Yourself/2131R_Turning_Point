@@ -53,18 +53,16 @@ void ManualLift(){
 }
 
 void Flipper(){
-  if(FlipperButton.isPressed() && Pressed == true){
+  if(FlipperButton.isPressed()){
       ControllerSet(Controller::FLIPPER);
       position = 300;
       velocity = 100;
-      Pressed = false;
   }
 
-  else if(!FlipperButton.isPressed() && Pressed == false){
+  else if(!FlipperButton.isPressed()){
     ControllerSet(Controller::FLIPPER);
     position = 0;
-    velocity = -100;
-    Pressed = true;
+    velocity = 100;
   }
 
   else if (ControllerInput()==Controller::FLIPPER) {

@@ -15,7 +15,7 @@ namespace Drive{
 
  //catapult motor
  namespace Catapult{
-   okapi::Motor Motor(19,true,okapi::AbstractMotor::gearset::red, okapi::AbstractMotor::encoderUnits::degrees);
+   okapi::Motor Motor(19,false,okapi::AbstractMotor::gearset::red, okapi::AbstractMotor::encoderUnits::degrees);
    okapi::Motor Motor2(18,true,okapi::AbstractMotor::gearset::red, okapi::AbstractMotor::encoderUnits::degrees);
 }
 

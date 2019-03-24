@@ -17,5 +17,7 @@ void CapMode(){
 
   Lift::Flipper();
 
+  Lift::LiftTransitions();
+
 }
 }

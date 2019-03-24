@@ -7,6 +7,7 @@ namespace Lift{
 
 void ManualLift();
 void Flipper();
+void LiftTransitions();
 
 enum class Controller {MANUAL ,FLIPPER, OFF};
 
