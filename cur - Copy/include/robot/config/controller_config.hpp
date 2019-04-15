@@ -1,11 +1,12 @@
 #ifndef CONTROLLER_CONFIG_HPP
 #define CONTROLLER_CONFIG_HPP
+
 #include "okapi/api.hpp"
 
 extern okapi::Controller controllerMaster;
 extern pros::Controller controllerSlave;
 
-namespace Mode{
+namespace flow{
   extern okapi::ControllerButton btnTog;
   extern okapi::ControllerButton btnToCaps;
 }
@@ -20,13 +21,18 @@ namespace intake{
 
   extern okapi::ControllerButton btnOut2;
 }
-namespace Lift{
+namespace lift{
   extern okapi::ControllerButton btnUp;
   extern okapi::ControllerButton btnDown;
   extern okapi::ControllerButton btnPosTog;
   extern okapi::ControllerButton btnCal;
 }
-namespace Catapult{
+namespace flipper{
+  extern okapi::ControllerButton btnUp;
+  extern okapi::ControllerButton btnDown;
+  extern okapi::ControllerButton btnCal;
+}
+namespace puncher{
   extern okapi::ControllerButton btnCharge;
   extern okapi::ControllerButton btnDoubleBack;
   extern okapi::ControllerButton btnDoubleFront;

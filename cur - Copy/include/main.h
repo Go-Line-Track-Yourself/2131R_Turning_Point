@@ -72,8 +72,8 @@ void opcontrol(void);
 #endif
 
 #ifdef __cplusplus
-#include "robot/Definitions/Motors.hpp"
-#include "robot/Definitions/Buttons.hpp"
+#include "robot/config/motor_config.hpp"
+#include "robot/config/controller_config.hpp"
 /**
  * You can add C++-only headers here
  */

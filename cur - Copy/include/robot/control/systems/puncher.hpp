@@ -1,7 +1,7 @@
-#ifndef CATAPULT_HPP
-#define CATAPULT_HPP
+#ifndef PUNCHER_HPP
+#define PUNCHER_HPP
 
-namespace Catapult{
+namespace puncher{
   //vars
   enum class Controllers{ONOFF,NONE};
 

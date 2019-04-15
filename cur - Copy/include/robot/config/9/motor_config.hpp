@@ -14,24 +14,25 @@ namespace drive{
   extern Ramping LeftS;
   extern Ramping RightS;
 }
-namespace Catapult{
+namespace puncher{
   extern okapi::Motor motor;
 }
 
-namespace Lift{
+namespace lift{
   // extern okapi::Motor motor0;
-  // extern okapi::Motor motor1;
   extern okapi::Motor motor;
-  // extern   okapi::ADIButton CapBump;
+  // extern okapi::MotorGroup motor;
+  // extern Ramping ramp;
 }
-namespace flipper{
-    extern okapi::Motor motor;
-}
+
 namespace intake{
   extern okapi::Motor motor;
-  namespace automatic{
-    namespace balls{
-      extern pros::ADILineSensor only;
+  namespace Auto{
+    namespace Balls{
+      extern pros::ADILineSensor Puncher;
+      extern pros::ADILineSensor Over;
+      extern pros::ADILineSensor Top;
+      extern pros::ADILineSensor Bottom;
     }
   }
 }

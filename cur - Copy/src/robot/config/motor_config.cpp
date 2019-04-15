@@ -17,10 +17,10 @@ namespace drive{
   Ramping LeftS (1,4,200,-200);
   Ramping RightS(1,4,200,-200);
 }
-namespace Catapult{
+namespace puncher{
   okapi::Motor motor(13,true,okapi::AbstractMotor::gearset::red,okapi::AbstractMotor::encoderUnits::degrees);
 }
-namespace Lift{
+namespace lift{
   okapi::Motor motor(9,true,okapi::AbstractMotor::gearset::red,okapi::AbstractMotor::encoderUnits::degrees);
 }
 namespace flipper{

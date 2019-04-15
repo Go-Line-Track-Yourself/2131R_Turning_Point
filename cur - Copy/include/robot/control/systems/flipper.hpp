@@ -1,7 +1,6 @@
-#ifndef LIFT_HPP
-#define LIFT_HPP
+#pragma once
 
-namespace lift{
+namespace flipper{
   //vars
   enum class Controllers{MANUAL,POSITION,CALABRATE,NONE};
 
@@ -11,7 +10,6 @@ namespace lift{
   // extern const double punBack1;//back first
   // extern const double punBack2;//back second
 
-  extern const double down;
   extern const double up;
   extern const double limitMin;
   extern const double limitMax;
@@ -47,12 +45,9 @@ namespace lift{
     namespace caps{
       void manual();
     } // namespace caps
-    void position();
     void calabrate();
   }
   inline namespace auton{
     void wait(int w=0);
   }
 }
-
-#endif /* end of include guard: LIFT_HPP */

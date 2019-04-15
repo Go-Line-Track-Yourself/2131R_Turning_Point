@@ -1,25 +1,26 @@
-#include "robot/control/systems/lift.hpp"
+#include "robot/control/systems/flipper.hpp"
+
 #include "robot/control/modes/flow.hpp"
 #include "main.h"
 
-namespace lift{
+namespace flipper{
   //vars
   Controllers controller=Controllers::NONE;
 
   //position
-  const double down=32;//at ground
-  const double up=280;//max in 18_ft spec
-  const double limitMin=down;
-  const double limitMax=600;
-  double P=down;//position setting
+  const double up=-85;//at top
+  // const double up=280;//max in 18_ft spec
+  const double limitMin=-550;
+  const double limitMax=up;
+  double P=up;//position setting
 
   //velocity
-  const int vMove=100;
+  const int vMove=200;
   const int vStop=0;
-  const int vUp=vMove;
-  const int vDown=-vMove;
+  const int vUp=vMove*3/4;
+  const int vDown=-vMove*3/4;
   const int vPos=vMove/2;
-  const int vCal=-vMove/2;
+  const int vCal=vMove/2;
   int V=vStop;//velocity setting
 
   //calabrate
@@ -64,13 +65,13 @@ namespace lift{
   void positionChanger(int v=vMove){
     set_v(v);
     if(get_controller()==Controllers::MANUAL){
-      set_target(down,vDown);
+      set_target(up,vDown);
     }
-    else if(get_target()==up)       set_target(down,-vPos);
-    else if(get_target()==down)     set_target(up,vPos);
-    // else if(get_target()==punFront1)  set_target(down,-vPos);
+    else if(get_target()==up)       set_target(up,-vPos);
+    else if(get_target()==up)     set_target(up,vPos);
+    // else if(get_target()==punFront1)  set_target(up,-vPos);
     // else if(get_target()==punFront2)  set_target(up,vPos);
-    // else if(get_target()==punBack1)  set_target(down,-vPos);
+    // else if(get_target()==punBack1)  set_target(up,-vPos);
     // else if(get_target()==punBack2)  set_target(up,vPos);
     set_controller(Controllers::POSITION);
   }
@@ -80,8 +81,8 @@ namespace lift{
       motor.moveVelocity(vStop);
       motor.tarePosition();
       Calabrated=true;
-      set_target(down, vUp, true);
-      motor.setLimitPositons(lift::limitMin,lift::limitMax);
+      set_target(up, vUp, true);
+      motor.setLimitPositons(limitMin,limitMax);
     }
     else {
       motor.moveVelocity(vCal);
@@ -120,22 +121,6 @@ namespace lift{
   namespace control{
     namespace flag{
       void manual(){
-        if(lift::btnDown.isPressed()){
-          set_controller(Controllers::MANUAL);
-          set_v(vDown);
-        }
-        else if(lift::btnUp.isPressed()){
-          set_controller(Controllers::MANUAL);
-          set_v(vUp);
-        }
-        else if(get_controller()==Controllers::MANUAL){//deinti
-          set_controller(Controllers::NONE);
-          set_v(0);
-        }
-      }
-    } // namespace flag
-    namespace caps{
-      void manual(){
         if(flipper::btnDown.isPressed()){
           set_controller(Controllers::MANUAL);
           set_v(vDown);
@@ -149,24 +134,25 @@ namespace lift{
           set_v(0);
         }
       }
+    } // namespace flag
+    namespace caps{
+      void manual(){
+        if (flow::get_mode()==flow::Modes::CAPS){
+          if(lift::btnDown.isPressed()){
+            set_controller(Controllers::MANUAL);
+            set_v(vDown);
+          }
+          else if(lift::btnUp.isPressed()){
+            set_controller(Controllers::MANUAL);
+            set_v(vUp);
+          }
+          else if(get_controller()==Controllers::MANUAL){//deinti
+            set_controller(Controllers::NONE);
+            set_v(0);
+          }
+        }
+      }
     } // namespace caps
-    void position(){
-      if(btnPosTog.changed()){
-        if(btnPosTog.isPressed()){//init
-          // set_controller(Controllers::POSITION);
-          positionChanger();
-        }
-        else{//deInit
-
-        }
-      }
-      else if(btnPosTog.isPressed()){//hold
-
-      }
-      else{
-
-      }
-    }
     void calabrate(){
       if(btnCal.changed()){
         if(btnCal.isPressed()){//init
@@ -177,7 +163,7 @@ namespace lift{
         else{//deInit
           motor.tarePosition();
           motor.setLimitPositionsEnabled();
-          set_target(down,vMove,true);
+          set_target(up,vMove,true);
         }
       }
       else if(btnCal.isPressed()){//hold

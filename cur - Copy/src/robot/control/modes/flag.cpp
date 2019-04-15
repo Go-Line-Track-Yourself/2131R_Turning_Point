@@ -17,22 +17,22 @@ namespace flag{
     intake::control::feedOut();
     intake::control::toggle();
 
-    Lift::control::flag::manual();
-    // Lift::control::calabrate();
+    lift::control::flag::manual();
+    // lift::control::calabrate();
 
     flipper::control::flag::manual();
     flipper::control::calabrate();
 
-    Catapult::control::charge();
-    // Catapult::control::doubleBack();
-    // Catapult::control::doubleFront();
+    puncher::control::charge();
+    // puncher::control::doubleBack();
+    // puncher::control::doubleFront();
   }
   void init(){
     drive::set_inverted(false);
-    Lift::set_target(Lift::down,Lift::vDown,true);
+    lift::set_target(lift::down,lift::vDown,true);
     flipper::set_target(flipper::up,flipper::vUp,true);
     controllerMaster.setText(1,5,"FLAG");
-    Mode::set_mode(Mode::Modes::FLAG);
+    flow::set_mode(flow::Modes::FLAG);
   }
   void deInit(){
 

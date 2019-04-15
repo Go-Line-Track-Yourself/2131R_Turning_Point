@@ -16,22 +16,22 @@ namespace caps{
     intake::control::feedOut();
     // intake::control::toggle();
 
-    Lift::control::caps::manual();
-    Lift::control::calabrate();
-    Lift::control::position();
+    lift::control::caps::manual();
+    lift::control::calabrate();
+    lift::control::position();
 
     flipper::control::caps::manual();
 
-    // Catapult::control::
+    // puncher::control::
   }
   void init(){
     // intake::automatic::disable();
     flipper::set_target(flipper::up,flipper::vUp,true);
-    // Lift::set_target(Lift::down,Lift::vDown,true);
+    // lift::set_target(lift::down,lift::vDown,true);
     drive::set_inverted(true);
     controllerMaster.setText(1,5,"CAPS");
-    Mode::set_mode(Mode::Modes::CAPS);
-    Lift::btnPosTog.changed();
+    flow::set_mode(flow::Modes::CAPS);
+    lift::btnPosTog.changed();
   }
   void deInit(){
 

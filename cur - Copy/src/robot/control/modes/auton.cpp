@@ -17,10 +17,10 @@ namespace auton{
     while(1){
       if(inAuton){
         drive::auton::ramping();
-        Catapult::execute();
+        puncher::execute();
 
         intake::execute();
-        Lift::execute();
+        lift::execute();
         flipper::execute();
       }
       pros::delay(5);//delay for 5 millis exact

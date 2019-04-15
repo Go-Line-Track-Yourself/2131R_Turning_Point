@@ -10,11 +10,11 @@ void opcontrol() {
   systemInit();
                   std::cout<<"syst inited"<<std::endl;
 
-  Mode::init();
+  flow::init();
                   std::cout<<"flow inited"<<std::endl;
 
   while (1) {
-    Mode::user();
+    flow::user();
     pros::delay(20);
     // static int loop;
     // loop++;

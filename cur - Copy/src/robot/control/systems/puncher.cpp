@@ -5,7 +5,7 @@
 #include "main.h"
 
 // #include "robot/auton/routines.hpp"
-namespace Catapult{
+namespace puncher{
   // pros::Mutex DoubleShotTaskMutex();
   bool Calabrated=false;
   //vars
@@ -101,7 +101,7 @@ namespace Catapult{
       Calabrated=true;
       OnOffCon::set_run(true);//enable it to reset its self
       //set target;//target starts at its offset from cal
-      // motor.setLimitPositons(Lift::limitMin,Lift::limitMax);
+      // motor.setLimitPositons(lift::limitMin,lift::limitMax);
     }
     else {
       motor.moveVelocity(-50);

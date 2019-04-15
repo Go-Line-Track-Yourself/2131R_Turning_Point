@@ -11,7 +11,7 @@
 #include "robot/control/systems/flipper.hpp"
 #include "robot/control/systems/puncher.hpp"
 
-namespace Mode{
+namespace flow{
   //vars
   Modes mode=Modes::NONE;
   //vars FUNCTIONS
@@ -76,13 +76,13 @@ namespace Mode{
   void execute(){
     drive::execute();
     intake::execute();
-    Lift::execute();
+    lift::execute();
     flipper::execute();
-    Catapult::execute();
+    puncher::execute();
   }
   void user(){
     drive::feedback::rumble();
-    // Lift::feedback::rumble();
+    // lift::feedback::rumble();
     control::modeTog();
 
     switch (get_mode()) {

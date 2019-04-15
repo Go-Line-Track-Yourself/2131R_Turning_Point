@@ -12,7 +12,7 @@ namespace auton{
   namespace Intake=intake::automatic;
   namespace Lift=lift;
   namespace Flipper=flipper;
-  namespace Puncher=Catapult::auton;
+  namespace Puncher=puncher::auton;
   namespace routines{
     void testing(){
 
@@ -24,42 +24,42 @@ namespace auton{
         Flipper::set_target(flipper::limitMin,100,true);
         Intake::disable();
         Flipper::wait();
-        Catapult::fire();
+        Puncher::fire();
     }
   }
 }
 //     void doubleShotFront(){
-//       Catapult::fire(true);
+//       Puncher::fire(true);
 //       Lift::set_target(Lift::punFront2,Lift::vUp,true);
 //       int timer=0;
 //       while(!Intake::balls::get_puncherActual() && timer<50){
 //         timer++;
 //         pros::delay(5);
 //       }
-//       Catapult::charge(false);
-//       Catapult::wait();
-//       Lift::wait();
+//       Puncher::charge(false);
+//       Puncher::wait();
+//       lift::wait();
 
-//       // Catapult::wait();
+//       // Puncher::wait();
 //       // pros::delay(350);
-//       Catapult::fire(true);
+//       Puncher::fire(true);
 //       Lift::set_target(Lift::down,Lift::vDown,true);
 //     }
 //     void doubelShotBack(double pos1=110,double pos2=Lift::punBack2,int timeDelay=250){
-//       Catapult::charge(false);
+//       Puncher::charge(false);
 //       Lift::set_target(pos1,Lift::vUp,true);
 //       Lift::wait();
-//       Catapult::fire(true);
+//       Puncher::fire(true);
 //       Lift::set_target(pos2);
 //       int timer=0;
 //       while(!Intake::balls::get_puncherActual() && timer<50){
 //         timer++;
 //         pros::delay(5);
 //       }
-//       Catapult::charge(true);
+//       Puncher::charge(true);
 //       Lift::wait(timeDelay);
-//       Catapult::fire(true);
-//       Catapult::wait(50); //wait for the ball to fully exit the ride
+//       Puncher::fire(true);
+//       Puncher::wait(50); //wait for the ball to fully exit the ride
 //       Lift::set_target(Lift::down,Lift::vDown,true);
 //     }
 //     namespace red{
@@ -69,7 +69,7 @@ namespace auton{
 
 //           Drive::drive(-27,200,1);
 
-//           Catapult::charge(false);
+//           Puncher::charge(false);
 
 //           Drive::turnEnc(-96,100,1);
 
@@ -92,7 +92,7 @@ namespace auton{
 //           // Lift::wait(100);
 //           Lift::set_target(Lift::down, 200, true);
 
-//           Catapult::charge();
+//           Puncher::charge();
 //           Drive::turnEnc(85, 150, 1);
 //           Drive::drive(-2,200,1);
 //           doubleShotFront();
@@ -109,7 +109,7 @@ namespace auton{
 //           Drive::drive(32,200,1);
 //           Drive::drive(-27,200,1);
 
-//           Catapult::charge(false);
+//           Puncher::charge(false);
 //           Drive::turnEnc(-95,100,0);
 //           // Drive::turnEnc(2,50,1)
 
@@ -131,7 +131,7 @@ namespace auton{
 //           Drive::drive(-10, 50, 1);
 
 //           // Intake::disable();
-//           Lift::set_target(Lift::up,Lift::vScoop,true);
+//           Lift::set_target(lift::up,lift::vScoop,true);
 //           intake::set_VSetting(-75,true);
 //           Lift::wait(250);
 
@@ -139,10 +139,10 @@ namespace auton{
                     
 //           Intake::enable();
 //           // Drive::driveS(-1,50,1);
-//           Lift::set_target(Lift::down,Lift::vDown,true);
+//           Lift::set_target(lift::down,lift::vDown,true);
 //           Lift::wait();
 
-//           doubelShotBack(96,Lift::up,true);
+//           doubelShotBack(96,lift::up,true);
 //         }
 //       }
 //       namespace back{
@@ -164,7 +164,7 @@ namespace auton{
 //           Drive::turnEnc(150,150,1);
 
 //           Intake::disable();
-//           Lift::set_target(Lift::up+50,Lift::vUp,true);
+//           Lift::set_target(lift::up+50,lift::vUp,true);
 //           Drive::drive(-35,200,1);
 //         }
 //         void farCap(){
@@ -185,7 +185,7 @@ namespace auton{
 
 //           Drive::drive(-27,200,1);
 
-//           Catapult::charge(false);
+//           Puncher::charge(false);
 
 //           Drive::turnEnc(96,100,1);
 
@@ -208,7 +208,7 @@ namespace auton{
 //           // Lift::wait(100);
 //           Lift::set_target(Lift::down, 200, true);
 
-//           Catapult::charge();
+//           Puncher::charge();
 //           Drive::turnEnc(-80, 150, 1);
 //           Drive::drive(-2,200,1);
 //           doubleShotFront();
@@ -225,7 +225,7 @@ namespace auton{
 //           Drive::drive(32,200,1);
 //           Drive::drive(-27,200,1);
 
-//           Catapult::charge(false);
+//           Puncher::charge(false);
 //           Drive::turnEnc(97,25,5000);
 //           // Drive::turnEnc(2,50,1)
 
@@ -253,7 +253,7 @@ namespace auton{
 //           Drive::turnEnc(-170,150,1);
 
 //           Intake::disable();
-//           Lift::set_target(Lift::up,Lift::vUp,true);
+//           Lift::set_target(lift::up,lift::vUp,true);
 //           Drive::drive(-40,200,1);
 //         }
 //         void farCap(){
@@ -277,7 +277,7 @@ namespace auton{
 //       Drive::turnEnc(-85, 100, 1);
 
 //       Drive::drive(35, 200, -1);
-//       Catapult::charge(false);
+//       Puncher::charge(false);
 //       Drive::drive(10, 100, 1);
 
 //       doubleShotFront();
@@ -305,7 +305,7 @@ namespace auton{
 
 //       Drive::turnEnc(-85, 100,1);
 
-//       Catapult::charge(false);
+//       Puncher::charge(false);
 //       // Drive::drive(10,100,1);
 
 //       doubleShotFront();

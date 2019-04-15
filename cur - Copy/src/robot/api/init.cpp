@@ -11,7 +11,7 @@ void systemInit() {  // custom robot init dont trust the reliability of
                      // initialize && competition_initialize
   if (!inited) {
     inited = true;
-    Catapult::motor.tarePosition();
+    puncher::motor.tarePosition();
     drive::LeftN.set_limits(drive::LeftN.get_changeMsec(),-drive::LeftN.get_changeMsec(),0,0);
     drive::RightN.set_limits(drive::RightN.get_changeMsec(),-drive::RightN.get_changeMsec(),0,0);
     drive::LeftS.set_limits(drive::LeftS.get_changeMsec(),-drive::LeftS.get_changeMsec(),0,0);
@@ -21,7 +21,7 @@ void systemInit() {  // custom robot init dont trust the reliability of
 void initialize() {
   auton::selection::screenInit();
 
-  Lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
+  lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
   intake::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
   flipper::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
       std::cout<<"inited"<<std::endl;
@@ -34,12 +34,12 @@ void disabled(void) {
   // drive::front_right_motor.moveVelocity(0);
   // drive::back_left_motor.moveVelocity(0);
   // drive::back_right_motor.moveVelocity(0);
-  // Catapult::motor.moveVelocity(0);
-  // Lift::motor.moveVelocity(0);
+  // puncher::motor.moveVelocity(0);
+  // lift::motor.moveVelocity(0);
   // intake::motor.moveVelocity(0);
 }
 void competition_initialize(void) {
   // AutonTask.suspend();
   // auton::inAuton=false;
-  // Catapult::motor.tarePosition();
+  // puncher::motor.tarePosition();
 }

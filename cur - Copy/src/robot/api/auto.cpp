@@ -16,7 +16,7 @@ pros::Task autonTask(::auton::Task, (void*)"test", TASK_PRIORITY_DEFAULT,
                      TASK_STACK_DEPTH_DEFAULT, "AutonTask");
 }
 void autonomous() {
-  // Catapult::motor.tarePosition();
+  // puncher::motor.tarePosition();
   systemInit();
   auton::set_auton(true);
   auton::autonTask.resume();
