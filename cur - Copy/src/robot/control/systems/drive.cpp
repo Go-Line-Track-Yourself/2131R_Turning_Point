@@ -60,15 +60,15 @@ namespace drive {
     // vars FUNCTIONS
 
     // methods
-    void rumble() {
-      static okapi::Timer timer;
-      if (get_brakeMode() != okapi::AbstractMotor::brakeMode::coast) {
-        using namespace okapi::literals;
-        if (timer.repeat(250_ms)) {
-          controllerMaster.rumble(".");
-        }
-      }
-    }
+    // void rumble() {
+    //   static okapi::Timer timer;
+    //   if (get_brakeMode() != okapi::AbstractMotor::brakeMode::coast) {
+    //     using namespace okapi::literals;
+    //     if (timer.repeat(250_ms)) {
+    //       controllerMaster.rumble(".");
+    //     }
+    //   }
+    // }
   }  // namespace feedback
   namespace control {
     void manual() {

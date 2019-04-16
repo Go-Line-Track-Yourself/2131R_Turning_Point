@@ -41,12 +41,7 @@ namespace lift{
   //   // void rumble();
   // }
   namespace control{
-    namespace flag{
-      void manual();
-    } // namespace flag
-    namespace caps{
-      void manual();
-    } // namespace caps
+    void manual();
     void position();
     void calabrate();
   }

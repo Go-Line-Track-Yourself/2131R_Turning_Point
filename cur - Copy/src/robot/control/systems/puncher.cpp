@@ -128,6 +128,7 @@ namespace puncher{
           // initBrakeMode = drive::get_brakeMode();
           // intake::automatic::enable();
           // drive::set_brakeMode(okapi::Motor::brakeMode::hold);
+          intake::automatic::feed2Balls=false;
           positionChanger();
         }
         else{//deInit
@@ -157,6 +158,7 @@ namespace puncher{
       auton::charge(false);//verify charghed dont wait
       positionChanger();//fire
       pros::delay(wait);
+      intake::automatic::feed2Balls=true;
       // intake::automatic::balls::set_puncher(false);
       // intake::automatic::balls::set_overEnabled(false);
     }

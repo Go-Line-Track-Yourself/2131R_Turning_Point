@@ -14,7 +14,7 @@ namespace drive{
   extern okapi::ControllerButton btnBrake;
 }
 namespace intake{
-  extern okapi::ControllerButton btnCombo;
+  extern okapi::ControllerButton btnDouble;
   extern okapi::ControllerButton btnIn;
   extern okapi::ControllerButton btnOut;
   extern okapi::ControllerButton btnTog;

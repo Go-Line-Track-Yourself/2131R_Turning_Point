@@ -51,6 +51,6 @@ double Ramping::get_min(){
 void Ramping::set_limits(double maxGate,double minGate,double maxVal,double minVal){
   gMax=maxGate;
   gMin=minGate;
-  vMax=maxGate;
-  vMin=minGate;
+  vMax=maxGate;//value from 0-gMax
+  vMin=minGate;//value from 0-gMin
 }

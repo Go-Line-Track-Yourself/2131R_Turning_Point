@@ -4,7 +4,7 @@
 #include "robot/control/systems/drive.hpp"
 #include "robot/control/systems/intake.hpp"
 #include "robot/control/systems/lift.hpp"
-#include "robot/control/systems/flipper.hpp"
+// #include "robot/control/systems/flipper.hpp"
 #include "robot/control/systems/puncher.hpp"
 
 namespace auton{
@@ -21,9 +21,9 @@ namespace auton{
         Lift::set_target(200,200,true);
         Drive::driveS(6,150,1);
 
-        Flipper::set_target(flipper::limitMin,100,true);
+        // Flipper::set_target(flipper::limitMin,100,true);
         Intake::disable();
-        Flipper::wait();
+        // Flipper::wait();
         Puncher::fire();
     }
   }

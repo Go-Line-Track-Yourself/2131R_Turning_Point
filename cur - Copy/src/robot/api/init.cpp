@@ -23,7 +23,7 @@ void initialize() {
 
   lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
   intake::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  flipper::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+  // flipper::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
       std::cout<<"inited"<<std::endl;
 
 }

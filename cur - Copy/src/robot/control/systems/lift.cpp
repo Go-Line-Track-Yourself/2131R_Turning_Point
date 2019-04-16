@@ -118,13 +118,12 @@ namespace lift{
     // }
   }
   namespace control{
-    namespace flag{
       void manual(){
-        if(lift::btnDown.isPressed()){
+        if(btnDown.isPressed()){
           set_controller(Controllers::MANUAL);
           set_v(vDown);
         }
-        else if(lift::btnUp.isPressed()){
+        else if(btnUp.isPressed()){
           set_controller(Controllers::MANUAL);
           set_v(vUp);
         }
@@ -133,23 +132,6 @@ namespace lift{
           set_v(0);
         }
       }
-    } // namespace flag
-    namespace caps{
-      void manual(){
-        if(flipper::btnDown.isPressed()){
-          set_controller(Controllers::MANUAL);
-          set_v(vDown);
-        }
-        else if(flipper::btnUp.isPressed()){
-          set_controller(Controllers::MANUAL);
-          set_v(vUp);
-        }
-        else if(get_controller()==Controllers::MANUAL){//deinti
-          set_controller(Controllers::NONE);
-          set_v(0);
-        }
-      }
-    } // namespace caps
     void position(){
       if(btnPosTog.changed()){
         if(btnPosTog.isPressed()){//init

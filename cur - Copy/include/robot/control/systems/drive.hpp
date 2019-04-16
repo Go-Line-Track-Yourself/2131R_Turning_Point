@@ -20,7 +20,7 @@ namespace drive{
     * rumbles the controller when
     * the drive is not in coast
     */
-    void rumble();
+    // void rumble();
   }
   namespace control{
     void manual();

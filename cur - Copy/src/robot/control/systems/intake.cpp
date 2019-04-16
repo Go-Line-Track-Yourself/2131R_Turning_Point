@@ -11,10 +11,9 @@ const int vMove = 200;
 const int vIn = vMove;
 const int vOut = -vMove;
 const int vStop = 0;
-const int vOver = -vMove / 2;
 int V = vStop;
 
-// bool doubleShotTaskEnabled = false;
+
 // vars FUNCTIONS
 Controllers get_controller() { return controller; }
 void set_controller(Controllers c) { controller = c; }
@@ -37,44 +36,6 @@ void execute(){
 }
 namespace control
 {
-  okapi::Timer t;
-  // void combo()
-  // {
-  //   using namespace okapi::literals;
-
-  //   if (btnCombo.changed())
-  //   {
-  //     if (btnCombo.isPressed())
-  //     { // init
-  //       // init time; used to measure delta time
-  //       t.placeMark(); // log this time;
-  //     }
-  //     else
-  //     { // deinit
-  //       if (t.getDtFromMark() < 200_ms)
-  //       { // short press
-  //         set_controller(Controllers::AUTO);
-  //         automatic::toggle();
-  //       }
-  //       else
-  //       { // long press
-  //         set_controller(Controllers::NONE);
-  //         set_v(vStop);
-  //       }
-  //     }
-  //   }
-  //   else if (btnCombo.isPressed())
-  //   { // hold
-  //     if (t.getDtFromMark() > 200_ms)
-  //     {
-  //       set_controller(Controllers::MANUAL);
-  //       set_v(vOut);
-  //     }
-  //   }
-  //   else
-  //   { // released
-  //   }
-  // }
 void feedOut()
 {
   static bool pressedWas;
@@ -108,7 +69,6 @@ void feedOut()
     set_v(0);
   }
 }
-
 void feedIn()
 {
   static bool pressedWas;
@@ -163,6 +123,24 @@ void toggle()
   //   pressedWas=false;
   // }
 }
+void doubleShoot()
+{
+  if (btnDouble.changed())
+  {
+    if (btnDouble.isPressed())
+    {               // init
+      automatic::feed2Balls=true;
+      automatic::enable();
+    }
+    else
+    { // deinit
+    }
+  }
+  else if (btnDouble.isPressed())
+  { // hold
+  }
+}
+
 void execute()
 {
   if (get_controller() == Controllers::MANUAL)
@@ -171,18 +149,16 @@ void execute()
 } // namespace control
 namespace automatic{
   // vars
-  const int onlyBallTal = 2500;  // sensor tollerance values
-
-  // const int ComRumTime=10;//100 loops
-  // int puncherTimer=0;
-  // int overTimer=0;
-  // bool comRum=false;
+  const int bottomBallTal = 2500;  // sensor tollerance values
+  const int middleBallTal = 2500;  // sensor tollerance values
+  const int topBallTal = 2500;  // sensor tollerance values
 
   bool enabled = false; //
   bool enabledWas = false;
 
-  // bool overMode = false;
-  // bool overEnabled = true;
+  bool feed2Balls=false;// put 2 balls in catapult
+
+
   // vars FUNCTIONS
   bool get_enabled() { return enabled; }
   void set_enabled(bool b)
@@ -193,29 +169,45 @@ namespace automatic{
   namespace balls
   {
   // vars
-  bool onlyBall = false;
+  bool bottomBall;
+  bool middleBall;
+  bool topBall;
+
   // vars FUNCTIONS
-  bool get_only() { return onlyBall; }
 
   // methods
   void updateVars()
   {
-    if (only.get_value() < onlyBallTal)
+    if (top.get_value() < topBallTal)
     {
-      onlyBall = true;
-              // std::cout << "intake ball yes"<<std::endl;
-
+      topBall = true;
     }
     else
-      onlyBall = false;
-                    // std::cout << "intake ball no "<<std::endl;
-
+    {
+      topBall = false;
+    }
+        if (middle.get_value() < middleBallTal)
+    {
+      middleBall = true;
+    }
+    else
+    {
+      middleBall = false;
+    }
+    if (bottom.get_value() < bottomBallTal)
+    {
+      bottomBall = true;
+    }
+    else
+    {
+      bottomBall = false;
+    }
   }
   } // namespace balls
   // methods
   void toggle()
   { // toogle the current enabled state
-        std::cout << "intake automatic: ";
+        // std::cout << "intake automatic: ";
 
     if (get_enabled())        disable();
     else if (!get_enabled())  enable();
@@ -224,23 +216,28 @@ namespace automatic{
   { // set to enabled state
     set_enabled(true);
     set_controller(Controllers::AUTO);
-            std::cout << "enabled"<<std::endl;
-
+            // std::cout << "enabled"<<std::endl;
   }
   void disable()
   { // set to disabled state
     set_enabled(false);
     set_controller(Controllers::NONE);
-                std::cout << "disabled"<<std::endl;
-
+                // std::cout << "disabled"<<std::endl;
   }
   void calcV()
   {
     if (get_enabled())
     {
       enabledWas = true;
-        if (!balls::get_only()) set_v(vIn);
-        else                    set_v(vStop);
+        if (!balls::topBall) set_v(vIn);
+        else if(feed2Balls){
+          if(!balls::middleBall)  set_v(vIn);
+          else set_v(vStop);
+        }
+        else{//keep in feed
+          if(!balls::bottomBall && !balls::middleBall)  set_v(vIn);
+          else set_v(vStop);
+        }
     }
     else if (enabledWas)
     { // first loop disabled

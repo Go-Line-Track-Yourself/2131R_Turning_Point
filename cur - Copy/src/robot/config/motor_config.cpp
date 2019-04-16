@@ -30,7 +30,9 @@ namespace intake{
   okapi::Motor motor(2,false,okapi::AbstractMotor::gearset::green,okapi::AbstractMotor::encoderUnits::degrees);
   namespace automatic{
     namespace balls{
-      pros::ADIAnalogIn only(8);
+      pros::ADIAnalogIn top(8);
+      pros::ADIAnalogIn middle(8);
+      pros::ADIAnalogIn bottom(8);
     }
   }
 }

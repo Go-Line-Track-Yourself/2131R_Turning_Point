@@ -27,10 +27,12 @@ extern const int vOver;
     void feedOut();
     void feedIn();
     void toggle();
+    void doubleShoot();
     void execute();
   }
   namespace automatic{
     //vars
+    extern bool feed2Balls;
     // enum Modes{FAST,SLOW,OUT,NONE};
     //vars FUNCTIONS
     // Modes get_mode();//return current intake mode
