@@ -19,27 +19,27 @@ void systemInit() {  // custom robot init dont trust the reliability of
   }
 }
 void initialize() {
-  auton::selection::screenInit();
+  pros::lcd::initialize();
+//  auton::onScreen();
+  pros::lcd::set_text(1, "Good Luck 2131R :)");
+  pros::lcd::set_text(2, POSITIONS[POSITION]);
+
+  pros::lcd::register_btn2_cb(auton::selection::on_right_button);
+  pros::lcd::register_btn0_cb(auton::selection::on_left_button);
+
+  puncher::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
 
   lift::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
   intake::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
-  // flipper::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+
       std::cout<<"inited"<<std::endl;
 
 }
 void disabled(void) {
   auton::autonTask.suspend();
   auton::set_auton(false);
-  // drive::front_left_motor.moveVelocity(0);
-  // drive::front_right_motor.moveVelocity(0);
-  // drive::back_left_motor.moveVelocity(0);
-  // drive::back_right_motor.moveVelocity(0);
-  // puncher::motor.moveVelocity(0);
-  // lift::motor.moveVelocity(0);
-  // intake::motor.moveVelocity(0);
+
 }
 void competition_initialize(void) {
-  // AutonTask.suspend();
-  // auton::inAuton=false;
-  // puncher::motor.tarePosition();
+
 }

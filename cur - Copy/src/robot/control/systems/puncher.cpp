@@ -40,8 +40,8 @@ namespace puncher{
   //methods
   namespace OnOffCon{
     //vars
-    const int ReleasedtoCharged=100;//not used if started charged
-    const int ChargedToCharged=360*5;//65
+    const int ReleasedtoCharged=140;//not used if started charged
+    const int ChargedToCharged=360*3;//65
     double Target=ReleasedtoCharged;//running sum;starts up to fix calibration
     bool Run=false;
     bool Enabled=false;
@@ -105,6 +105,7 @@ namespace puncher{
     }
     else {
       motor.moveVelocity(-50);
+      //motor2.moveVelocity(-50);
     }
   }
   void execute(){

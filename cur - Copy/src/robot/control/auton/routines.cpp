@@ -11,23 +11,80 @@ namespace auton{
   namespace Drive=drive::auton;
   namespace Intake=intake::automatic;
   namespace Lift=lift;
-  namespace Flipper=flipper;
   namespace Puncher=puncher::auton;
-  namespace routines{
+namespace routines{
     void testing(){
 
-        Drive::drive(12,200,1);
-        Intake::enable();
-        Lift::set_target(200,200,true);
-        Drive::driveS(6,150,1);
+      Drive::drive(25,200,1);
+      Drive::drive(-20,200,1);
+      Drive::turnEnc(-350,150,1);
+      Puncher::fire(true);
+      Drive::drive(22,200,1);
+      Drive::drive(-23,200,1);
+      Drive::turnEnc(140,150,1);
+      Drive::drive(9,200,1);
+      Puncher::fire(true);
 
-        // Flipper::set_target(flipper::limitMin,100,true);
-        Intake::disable();
-        // Flipper::wait();
-        Puncher::fire();
+    }
+
+  namespace red{
+    void front(){
+        Drive::drive(28,200,100);
+        Drive::drive(-28,200,100);
+        Drive::turnEnc(-180,200,100);
+        Drive::drive(2,200,100);
+        Puncher::fire(true);
+        Drive::drive(30,200,100);
+        Drive::drive(-30,200,100);
+        Drive::turnEnc(45,200,100);
+        Puncher::fire(true);
+    }
+    void back(){
+      Drive::drive(30,200,100);
+      Drive::drive(-12,200,100);
+      Drive::turnEnc(135,200,100);
+      Drive::drive(-20,200,100);
+      Lift::set_target(200,200);
+      Lift::wait(100);
+      Lift::set_target(200,-200);
+      Drive::turnEnc(-45,200,100);
+      Drive::driveS(20,200,100);
+      Drive::drive(20,200,100);
+
     }
   }
+  namespace blue{
+    void front(){
+      Drive::drive(32,200,100);
+      Drive::drive(-32,200,100);
+      Drive::turnEnc(90,200,100);
+      Drive::drive(2,200,100);
+      Puncher::fire(true);
+      Drive::drive(30,200,100);
+      Drive::drive(-30,200,100);
+      Drive::turnEnc(-45,200,100);
+      Puncher::fire(true);
+
+    }
+    void back(){
+      Drive::drive(30,200,100);
+      Drive::drive(-12,200,100);
+      Drive::turnEnc(135,200,100);
+      Drive::drive(-20,200,100);
+      Lift::set_target(200,200);
+      Lift::wait(100);
+      Lift::set_target(200,-200);
+      Drive::turnEnc(-45,200,100);
+      Drive::driveS(20,200,100);
+      Drive::drive(20,200,100);
+
+    }
+  }
+    void skills(){
+
+    }
 }
+
 //     void doubleShotFront(){
 //       Puncher::fire(true);
 //       Lift::set_target(Lift::punFront2,Lift::vUp,true);
@@ -136,7 +193,7 @@ namespace auton{
 //           Lift::wait(250);
 
 //           Drive::turnEnc(-176,75,0);
-                    
+
 //           Intake::enable();
 //           // Drive::driveS(-1,50,1);
 //           Lift::set_target(lift::down,lift::vDown,true);
@@ -174,7 +231,7 @@ namespace auton{
 
 //         }
 //         void midCap(){
-          
+
 //         }
 //       }
 //     }
@@ -334,4 +391,4 @@ namespace auton{
 //     }
 //     void defaultSelection(){  blue::back::farPark();  }
 //   }
-// }
+}

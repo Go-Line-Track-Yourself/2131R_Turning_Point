@@ -7,10 +7,10 @@ namespace lift{
   Controllers controller=Controllers::NONE;
 
   //position
-  const double down=32;//at ground
+  const double down=68;//at ground
   const double up=280;//max in 18_ft spec
   const double limitMin=down;
-  const double limitMax=600;
+  const double limitMax=685;
   double P=down;//position setting
 
   //velocity

@@ -266,7 +266,7 @@ namespace drive {
 
       if (EndWait == -1) {  //                                                          Junction
         // only use if another drive command fallows
-      } 
+      }
       else if (EndWait > 0) {  // default; set stop, wait for stop, wait for
                                  // endwait;    StopWait
         // QDRS();//quick drive ramp stop
@@ -275,7 +275,7 @@ namespace drive {
           pros::delay(5);
         }
         pros::delay(EndWait);
-      } 
+      }
       else {  //>=0,!=-1; set stop dont wait; Stop
         DRS(0, 0);
       }

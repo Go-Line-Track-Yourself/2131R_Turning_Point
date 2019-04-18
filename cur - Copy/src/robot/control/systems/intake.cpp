@@ -230,15 +230,17 @@ namespace automatic{
     {
       enabledWas = true;
         if (!balls::topBall) set_v(vIn);
-        else if(feed2Balls){
+        else{
+          if(feed2Balls){
           if(!balls::middleBall)  set_v(vIn);
           else set_v(vStop);
         }
         else{//keep in feed
           if(!balls::bottomBall && !balls::middleBall)  set_v(vIn);
-          else set_v(vStop);
+          else if (balls::bottomBall && balls::middleBall) set_v(vStop);
         }
     }
+  }
     else if (enabledWas)
     { // first loop disabled
       set_v(vStop);
