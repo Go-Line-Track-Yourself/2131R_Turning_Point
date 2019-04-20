@@ -14,74 +14,112 @@ namespace auton{
   namespace Puncher=puncher::auton;
 namespace routines{
     void testing(){
-
       Drive::drive(25,200,1);
-      Drive::drive(-20,200,1);
-      Drive::turnEnc(-350,150,1);
+      intake::automatic::feed2Balls = true;
+      Drive::drive(-21,200,1);
+      Drive::turnEnc(360,150,1);
       Puncher::fire(true);
-      Drive::drive(22,200,1);
-      Drive::drive(-23,200,1);
-      Drive::turnEnc(140,150,1);
-      Drive::drive(9,200,1);
+      pros::delay(500);
+      Drive::turnEnc(2.5,200,1);
+      Drive::drive(23,200,100);
+      Drive::drive(-24,200,1);
+      Drive::turnEnc(-137,150,1);
+      Drive::drive(8,200,1);
       Puncher::fire(true);
 
     }
 
   namespace red{
-    void front(){
-        Drive::drive(28,200,100);
-        Drive::drive(-28,200,100);
-        Drive::turnEnc(-180,200,100);
-        Drive::drive(2,200,100);
+      void front(){
+        Drive::drive(25,200,1);
+        intake::automatic::feed2Balls = true;
+        Drive::drive(-20,200,1);
+        Drive::turnEnc(-365,125,1);
         Puncher::fire(true);
-        Drive::drive(30,200,100);
-        Drive::drive(-30,200,100);
-        Drive::turnEnc(45,200,100);
+        pros::delay(500);
+        Drive::turnEnc(-10,15,1);
+        Drive::drive(24,200,1);
+        Drive::drive(-24,200,1);
+        Drive::turnEnc(168,150,1);
+        Drive::drive(9,200,1);
         Puncher::fire(true);
     }
     void back(){
-      Drive::drive(30,200,100);
-      Drive::drive(-12,200,100);
-      Drive::turnEnc(135,200,100);
-      Drive::drive(-20,200,100);
-      Lift::set_target(200,200);
-      Lift::wait(100);
-      Lift::set_target(200,-200);
-      Drive::turnEnc(-45,200,100);
-      Drive::driveS(20,200,100);
-      Drive::drive(20,200,100);
+      Drive::drive(29,200,1);
+      Drive::drive(-4,200,1);
+      Lift::set_target(200,100,1);
+      Drive::turnEnc(-360,200,1);
+      Drive::drive(-17,200,1);
+
 
     }
   }
   namespace blue{
     void front(){
-      Drive::drive(32,200,100);
-      Drive::drive(-32,200,100);
-      Drive::turnEnc(90,200,100);
-      Drive::drive(2,200,100);
+      Drive::drive(25,200,1);
+      intake::automatic::feed2Balls = true;
+      Drive::drive(-19,200,1);
+      Drive::turnEnc(360,150,1);
       Puncher::fire(true);
-      Drive::drive(30,200,100);
-      Drive::drive(-30,200,100);
-      Drive::turnEnc(-45,200,100);
+      pros::delay(500);
+      Drive::drive(21,200,100);
+      Drive::drive(-22,200,1);
+      Drive::turnEnc(-138,150,1);
+      Drive::drive(6,200,1);
       Puncher::fire(true);
 
     }
     void back(){
-      Drive::drive(30,200,100);
-      Drive::drive(-12,200,100);
-      Drive::turnEnc(135,200,100);
-      Drive::drive(-20,200,100);
-      Lift::set_target(200,200);
-      Lift::wait(100);
-      Lift::set_target(200,-200);
-      Drive::turnEnc(-45,200,100);
-      Drive::driveS(20,200,100);
-      Drive::drive(20,200,100);
+      Drive::drive(29,200,1);
+      Drive::drive(-4,200,1);
+      Lift::set_target(200,100,1);
+      Drive::turnEnc(-360,200,1);
+      Drive::drive(-17,200,1);
 
     }
   }
     void skills(){
-
+      Intake::disable();
+      Drive::drive(26,200,1);
+      Intake::enable();
+      Drive::drive(-21,200,1);
+      Drive::driveRecon(-200,450,1);
+      Drive::drive(1,200,1);
+      Drive::turnEnc(-352,150,1);
+      Drive::drive(25,200,1);
+      Puncher::fire();
+      pros::delay(500);
+      Drive::turnEnc(-1.5,200,1);
+      Drive::drive(27,200,1);
+      Drive::drive(-26,200,1);
+      Drive::turnEnc(360,150,1);
+      Intake::disable();
+      Drive::driveRecon(-200,550,1);
+      Drive::drive(38,200,1);
+      Intake::enable();
+      Drive::drive(-2,200,1);
+      Drive::turnEnc(-355,150,1);
+      Puncher::fire();
+      pros::delay(500);
+      Drive::turnEnc(-1.5,200,1);
+      Drive::drive(27,200,1);
+      Drive::drive(-12,200,1);
+      Drive::turnEnc(-352,200,1);
+      Drive::drive(-22,200,1);
+      Drive::driveS(-7,200,1);
+      Drive::drive(-3,200,1);
+      Drive::turnEnc(360,150,1);
+      Puncher::fire();
+      pros::delay(400);
+      Drive::turnEnc(-1.5,200,1);
+      Drive::drive(27,200,1);
+      Drive::drive(-27,200,1);
+      Drive::turnEnc(-360,200,1);
+      Drive::drive(-5,200,1);
+      Drive::turnEnc(360,200,1);
+      Drive::drive(5,200,1);
+      Drive::turnEnc(-360,200,1);
+      Drive::drive(65,200,1);
     }
 }
 

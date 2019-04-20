@@ -40,7 +40,7 @@ namespace puncher{
   //methods
   namespace OnOffCon{
     //vars
-    const int ReleasedtoCharged=140;//not used if started charged
+    const int ReleasedtoCharged=137;//not used if started charged
     const int ChargedToCharged=360*3;//65
     double Target=ReleasedtoCharged;//running sum;starts up to fix calibration
     bool Run=false;
@@ -69,8 +69,10 @@ namespace puncher{
     }
     //methods
     void execute(){
-      if(motor.getPosition()<get_target() && get_run()){//outside of tal
+      // std::cout << motor.getPosition() << " : " <<motor2.getPosition()<< " : "<<get_target()<< " : "<< get_run()<< " : "<<VMove <<std::endl;
+      if(motor1.getPosition()<get_target() && get_run()){//outside of tal
         set_controller(Controllers::ONOFF);
+        // std::cout <<"onoff mode"<<std::endl;
         // Dir=SGN(Tar-Punchermotor.rotation(vex::rotationUnits::deg));
         set_v(VMove);//set the motor to spin in the correct direction
       }
@@ -114,6 +116,7 @@ namespace puncher{
       OnOffCon::execute();
       if(get_controller()==Controllers::ONOFF){
         motor.moveVelocity(get_v());
+        std::cout << get_v() << std::endl;
       }
       else if(get_controller()==Controllers::NONE){
         motor.moveVelocity(VStop);

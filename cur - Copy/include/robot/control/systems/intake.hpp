@@ -7,7 +7,7 @@ extern const int vIn;
 extern const int vOut;
 extern const int vStop;
 extern const int vOver;
-
+extern bool feed2balls;
   enum class Controllers{MANUAL,AUTO,NONE};//add to motors class
 
   //vars FUNCTIONS

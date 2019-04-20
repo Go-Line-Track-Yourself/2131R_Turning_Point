@@ -10,6 +10,7 @@ namespace puncher{
   //vars FUNCTIONS
   // bool get_doubleShot();
   bool get_charged();
+  int get_v();
   //methods
   void execute();
   namespace OnOffCon{

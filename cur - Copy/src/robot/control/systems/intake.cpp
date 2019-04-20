@@ -7,7 +7,7 @@ namespace intake{
 // vars
 Controllers controller = Controllers::NONE;
 
-const int vMove = 200;
+const int vMove = 170;
 const int vIn = vMove;
 const int vOut = -vMove;
 const int vStop = 0;
@@ -237,7 +237,8 @@ namespace automatic{
         }
         else{//keep in feed
           if(!balls::bottomBall && !balls::middleBall)  set_v(vIn);
-          else if (balls::bottomBall && balls::middleBall) set_v(vStop);
+          else if (balls::topBall && balls::bottomBall) set_v(vStop);
+          else if (balls::middleBall && balls::topBall) set_v(vStop);
         }
     }
   }

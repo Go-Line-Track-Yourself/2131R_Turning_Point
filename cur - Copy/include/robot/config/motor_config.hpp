@@ -15,8 +15,8 @@ namespace drive{
   extern Ramping RightS;
 }
 namespace puncher{
-  //extern okapi::Motor motor1;
-  //extern okapi::Motor motor2;
+  extern okapi::Motor motor1;
+  extern okapi::Motor motor2;
   extern okapi::MotorGroup motor;
 }
 
