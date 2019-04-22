@@ -40,7 +40,7 @@ namespace puncher{
   //methods
   namespace OnOffCon{
     //vars
-    const int ReleasedtoCharged=137;//not used if started charged
+    const int ReleasedtoCharged=132;//not used if started charged
     const int ChargedToCharged=360*3;//65
     double Target=ReleasedtoCharged;//running sum;starts up to fix calibration
     bool Run=false;

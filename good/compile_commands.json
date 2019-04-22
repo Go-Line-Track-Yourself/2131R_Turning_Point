@@ -133,7 +133,7 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "C:/Users/Ellison/AppData/Local/Temp/tmpzgtta13t/opcontrol.cpp.o",
+            "C:/Users/Ellison/AppData/Local/Temp/tmptvf5_fqv/opcontrol.cpp.o",
             "src\\opcontrol.cpp"
         ],
         "directory": "C:\\Users\\Ellison\\Documents\\GitHub\\R-Team-Repository\\good",
@@ -168,7 +168,7 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "C:/Users/Ellison/AppData/Local/Temp/tmpzgtta13t/initialize.cpp.o",
+            "C:/Users/Ellison/AppData/Local/Temp/tmptvf5_fqv/initialize.cpp.o",
             "src\\initialize.cpp"
         ],
         "directory": "C:\\Users\\Ellison\\Documents\\GitHub\\R-Team-Repository\\good",
@@ -203,7 +203,7 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "C:/Users/Ellison/AppData/Local/Temp/tmpzgtta13t/autonomous.cpp.o",
+            "C:/Users/Ellison/AppData/Local/Temp/tmptvf5_fqv/autonomous.cpp.o",
             "src\\autonomous.cpp"
         ],
         "directory": "C:\\Users\\Ellison\\Documents\\GitHub\\R-Team-Repository\\good",
