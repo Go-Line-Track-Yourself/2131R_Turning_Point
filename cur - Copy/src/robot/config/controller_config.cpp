@@ -14,13 +14,14 @@ namespace intake{
   okapi::ControllerButton btnIn = controllerMaster[okapi::ControllerDigital::X];
   okapi::ControllerButton btnOut = controllerMaster[okapi::ControllerDigital::A];
   okapi::ControllerButton btnTog = controllerMaster[okapi::ControllerDigital::L1];
+  okapi::ControllerButton btnSkills = controllerMaster[okapi::ControllerDigital::B];
 }
 namespace lift{
   okapi::ControllerButton btnUp = controllerMaster[okapi::ControllerDigital::R1];
   okapi::ControllerButton btnDown = controllerMaster[okapi::ControllerDigital::R2];
   okapi::ControllerButton btnCal = controllerMaster[okapi::ControllerDigital::down];
   
-  okapi::ControllerButton btnPosTog = controllerMaster[okapi::ControllerDigital::Y];
+  okapi::ControllerButton btnPosTog = controllerMaster[okapi::ControllerDigital::R2];
 }
 namespace puncher{
   okapi::ControllerButton btnCharge = controllerMaster[okapi::ControllerDigital::R1];

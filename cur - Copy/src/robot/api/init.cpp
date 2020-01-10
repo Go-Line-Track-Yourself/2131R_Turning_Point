@@ -11,7 +11,7 @@ void systemInit() {  // custom robot init dont trust the reliability of
                      // initialize && competition_initialize
   if (!inited) {
     inited = true;
-    puncher::motor.tarePosition();
+    puncher::motor.tarePosition();//reset puncher at the beg of match
     drive::LeftN.set_limits(drive::LeftN.get_changeMsec(),-drive::LeftN.get_changeMsec(),0,0);
     drive::RightN.set_limits(drive::RightN.get_changeMsec(),-drive::RightN.get_changeMsec(),0,0);
     drive::LeftS.set_limits(drive::LeftS.get_changeMsec(),-drive::LeftS.get_changeMsec(),0,0);
@@ -33,7 +33,6 @@ void initialize() {
   intake::motor.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
 
       std::cout<<"inited"<<std::endl;
-
 }
 void disabled(void) {
   auton::autonTask.suspend();

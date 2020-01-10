@@ -4,10 +4,10 @@
 #include "robot/control/systems/lift.hpp"
 #include "main.h"
 
-// #include "robot/auton/routines.hpp"
+//#include "robot/auton/routines.hpp"
+
 namespace puncher{
   // pros::Mutex DoubleShotTaskMutex();
-  bool Calabrated=false;
   //vars
   Controllers Controller=Controllers::NONE;
 
@@ -36,15 +36,20 @@ namespace puncher{
   void set_charged(bool c){
     Charged=c;
   }
+
   //OnOffCon
   //methods
+
   namespace OnOffCon{
     //vars
-    const int ReleasedtoCharged=132;//not used if started charged
-    const int ChargedToCharged=360*3;//65
-    double Target=ReleasedtoCharged;//running sum;starts up to fix calibration
-    bool Run=false;
-    bool Enabled=false;
+    const int ReleasedtoCharged=360;//not used if started charged
+    const int ChargedToReleased=360;//65
+    double Target;//running sum;starts up to fix calibration
+    double StartPos;
+    double EndFirePos;
+    const double chargeTal=2500;
+    bool Run=false;//fire bool
+    bool PosEnabled=false;//pos bool
     //vars FUNCTIONS
     bool get_run(){
       return Run;
@@ -52,11 +57,11 @@ namespace puncher{
     void set_run(bool r){
       Run=r;
     }
-    bool get_enabled(){
-      return Enabled;
+    bool get_posEnabled(){
+      return PosEnabled;
     }
-    void set_enabled(bool e){
-      Enabled=e;
+    void set_posEnabled(bool e){
+      PosEnabled=e;
     }
     double get_target(){
       return Target;
@@ -69,50 +74,45 @@ namespace puncher{
     }
     //methods
     void execute(){
-      // std::cout << motor.getPosition() << " : " <<motor2.getPosition()<< " : "<<get_target()<< " : "<< get_run()<< " : "<<VMove <<std::endl;
-      if(motor1.getPosition()<get_target() && get_run()){//outside of tal
-        set_controller(Controllers::ONOFF);
-        // std::cout <<"onoff mode"<<std::endl;
-        // Dir=SGN(Tar-Punchermotor.rotation(vex::rotationUnits::deg));
-        set_v(VMove);//set the motor to spin in the correct direction
-      }
-      else if(get_controller()==Controllers::ONOFF){//if in tar zone and was enabled; fist not enabled
-        set_controller(Controllers::NONE);
-        set_v(0);
-        set_run(false);//stop after it has been hit
+        if(motor.getPosition()<get_target() && get_run()){//if it is past its max target and still not been seen stop and go manual
+          set_controller(Controllers::ONOFF);
+          set_v(VMove);//set the motor to spin in the correct direction
+        }
+        else if(get_controller()==Controllers::ONOFF){//deinit
+          set_controller(Controllers::NONE);
+          set_v(0);
+          set_run(false);
+        }
       }
     }
-  }
-  void positionChanger(){
-    // ComRumerFun();
-    if(!get_charged()){//set up
+  void positionChanger(){//fire but not named for fire but the same
+     if(!get_charged()){
       OnOffCon::set_targetRel(OnOffCon::ReleasedtoCharged);
       OnOffCon::set_run(true);
       set_charged(true);
-    }
-    else if(get_charged()){//fire
-      OnOffCon::set_targetRel(OnOffCon::ChargedToCharged);
-      OnOffCon::set_run(true);
-    }
+     }
+     else if(get_charged()){
+      OnOffCon::set_targetRel(OnOffCon::ChargedToReleased);
+       OnOffCon::set_run(true);
+       set_charged(false);
+     }
   }
   void calabrate(){//20 loops
-    const static int tStart=pros::millis();
-    if(pros::millis()>tStart+250){
-      motor.moveVelocity(0);
-      motor.tarePosition();
-      Calabrated=true;
-      OnOffCon::set_run(true);//enable it to reset its self
-      //set target;//target starts at its offset from cal
-      // motor.setLimitPositons(lift::limitMin,lift::limitMax);
-    }
-    else {
-      motor.moveVelocity(-50);
-      //motor2.moveVelocity(-50);
-    }
+    // const static int tStart=pros::millis();
+    // if(pros::millis()>tStart+250){
+    //   motor.moveVelocity(0);
+    //   motor.tarePosition();
+      // Calabrated=true;
+    //   OnOffCon::set_run(true);//enable it to reset its self
+    //   //set target;//target starts at its offset from cal
+    //   // motor.setLimitPositons(lift::limitMin,lift::limitMax);
+    // }
+    // else {
+    //   motor.moveVelocity(-50);
+    //   //motor2.moveVelocity(-50);
+    // }
   }
   void execute(){
-    if(!Calabrated) calabrate();
-    else{
       OnOffCon::execute();
       if(get_controller()==Controllers::ONOFF){
         motor.moveVelocity(get_v());
@@ -122,29 +122,27 @@ namespace puncher{
         motor.moveVelocity(VStop);
       }
     }
-  }
-
+  
   namespace control{
-    // okapi::Motor::brakeMode initBrakeMode = okapi::Motor::brakeMode::coast;
+     okapi::Motor::brakeMode initBrakeMode = okapi::Motor::brakeMode::coast;
     void charge(){
-      if(btnCharge.changed()){
-        if(btnCharge.isPressed()){//inti
-          // initBrakeMode = drive::get_brakeMode();
-          // intake::automatic::enable();
-          // drive::set_brakeMode(okapi::Motor::brakeMode::hold);
-          intake::automatic::feed2Balls=false;
-          positionChanger();
+        if(btnCharge.changed()){
+          if(btnCharge.isPressed()){//inti
+            // initBrakeMode = drive::get_brakeMode();
+            // drive::set_brakeMode(okapi::Motor::brakeMode::hold);
+            // intake::automatic::enable();//start up auto intake
+            positionChanger();
+          }
+          else{//deInit
+            // drive::set_brakeMode(initBrakeMode);
+          }
         }
-        else{//deInit
-          // drive::set_brakeMode(initBrakeMode);
+        else if(btnCharge.isPressed()){//hold
+
         }
-      }
-      else if(btnCharge.isPressed()){//hold
+        else{
 
-      }
-      else{
-
-      }
+        }
     }
   }
   namespace auton{
@@ -155,14 +153,16 @@ namespace puncher{
       pros::delay(w);
     }
     void charge(bool w){
-      if(!get_charged())  positionChanger();//charge
+      if(!get_charged())  positionChanger();//fire
       if(w)  wait();
     }
     void fire(int wait){
       auton::charge(false);//verify charghed dont wait
+
       positionChanger();//fire
       pros::delay(wait);
-      intake::automatic::feed2Balls=true;
+      // intake::automatic::feed2Balls=true;
+
       // intake::automatic::balls::set_puncher(false);
       // intake::automatic::balls::set_overEnabled(false);
     }

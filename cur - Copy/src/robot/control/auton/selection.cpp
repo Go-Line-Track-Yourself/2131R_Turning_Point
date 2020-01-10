@@ -39,6 +39,7 @@ namespace auton{
     }
     if(POSITION ==5){
       routines::skills();
+      
     }
 
   }

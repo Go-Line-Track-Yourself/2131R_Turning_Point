@@ -29,6 +29,7 @@ extern bool feed2balls;
     void toggle();
     void doubleShoot();
     void execute();
+    void SkillsIntake();
   }
   namespace automatic{
     //vars

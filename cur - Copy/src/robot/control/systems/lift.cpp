@@ -8,9 +8,9 @@ namespace lift{
 
   //position
   const double down=68;//at ground
-  const double up=280;//max in 18_ft spec
-  const double limitMin=down;
-  const double limitMax=685;
+  const double up=150;//max in 18_ft spec
+  const double limitMin=-500;
+  const double limitMax=2000;
   double P=down;//position setting
 
   //velocity

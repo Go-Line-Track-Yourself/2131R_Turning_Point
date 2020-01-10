@@ -15,9 +15,8 @@ namespace drive{
   extern Ramping RightS;
 }
 namespace puncher{
-  extern okapi::Motor motor1;
-  extern okapi::Motor motor2;
-  extern okapi::MotorGroup motor;
+  extern okapi::Motor motor;
+  extern pros::ADIAnalogIn charge;
 }
 
 namespace lift{
@@ -34,8 +33,8 @@ namespace intake{
   namespace automatic{
     namespace balls{
       extern pros::ADILineSensor top;
+      extern pros::ADILineSensor feed;
       extern pros::ADILineSensor middle;
-      extern pros::ADILineSensor bottom;
     }
   }
 }

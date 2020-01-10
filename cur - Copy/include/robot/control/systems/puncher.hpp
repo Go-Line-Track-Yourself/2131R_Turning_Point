@@ -15,6 +15,7 @@ namespace puncher{
   void execute();
   namespace OnOffCon{
     bool get_run();
+    void startUp();
   }
   namespace control{
     void charge();

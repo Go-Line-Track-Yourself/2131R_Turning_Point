@@ -18,7 +18,7 @@ namespace caps{
 
     lift::control::manual();
     lift::control::calabrate();
-    lift::control::position();
+    //lift::control::position();
 
     // flipper::control::caps::manual();
 

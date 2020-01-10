@@ -4,7 +4,6 @@
 #include "robot/control/systems/drive.hpp"
 #include "robot/control/systems/intake.hpp"
 #include "robot/control/systems/lift.hpp"
-// #include "robot/control/systems/flipper.hpp"
 #include "robot/control/systems/puncher.hpp"
 
 namespace flag{
@@ -16,9 +15,11 @@ namespace flag{
     intake::control::feedIn();
     intake::control::feedOut();
     intake::control::toggle();
+    intake::control::SkillsIntake();
 
     // lift::control::flag::manual();
     lift::control::calabrate();
+    lift::control::position();
 
     // flipper::control::flag::manual();
     // flipper::control::calabrate();

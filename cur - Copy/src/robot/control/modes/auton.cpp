@@ -18,7 +18,7 @@ namespace auton{
       if(inAuton){
         drive::auton::ramping();
         puncher::execute();
-
+        intake::automatic::enable();
         intake::execute();
         lift::execute();
         // flipper::execute();

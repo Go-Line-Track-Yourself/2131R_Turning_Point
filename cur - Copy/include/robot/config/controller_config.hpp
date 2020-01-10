@@ -18,6 +18,7 @@ namespace intake{
   extern okapi::ControllerButton btnIn;
   extern okapi::ControllerButton btnOut;
   extern okapi::ControllerButton btnTog;
+  extern okapi::ControllerButton btnSkills;
 
   extern okapi::ControllerButton btnOut2;
 }

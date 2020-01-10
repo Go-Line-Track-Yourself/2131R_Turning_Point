@@ -129,7 +129,6 @@ void doubleShoot()
   {
     if (btnDouble.isPressed())
     {               // init
-      automatic::feed2Balls=true;
       automatic::enable();
     }
     else
@@ -141,6 +140,31 @@ void doubleShoot()
   }
 }
 
+ void SkillsIntake(){
+
+    static bool Pressed;
+    static bool Inverted;
+
+    if(btnSkills.isPressed() && Pressed == true){
+      Pressed = false;
+      Inverted = !Inverted;
+
+      if(Inverted){
+        set_controller(Controllers::MANUAL);
+        set_v(vOut);
+      }
+
+      if(!Inverted){
+        set_controller(Controllers::MANUAL);
+        set_v(0);
+      }
+  
+    }
+    if(!btnSkills.isPressed() && Pressed == false){
+      Pressed = true;
+    }
+  }
+
 void execute()
 {
   if (get_controller() == Controllers::MANUAL)
@@ -149,29 +173,29 @@ void execute()
 } // namespace control
 namespace automatic{
   // vars
-  const int bottomBallTal = 2500;  // sensor tollerance values
-  const int middleBallTal = 2500;  // sensor tollerance values
+  const int feedBallTal = 2500;  // sensor tollerance values
   const int topBallTal = 2500;  // sensor tollerance values
+  const int middleBallTal = 2800; //sensor tollerance values
 
   bool enabled = false; //
   bool enabledWas = false;
 
-  bool feed2Balls=false;// put 2 balls in catapult
+  // bool feed2Balls=false;// put 2 balls in catapult
 
 
   // vars FUNCTIONS
   bool get_enabled() { return enabled; }
   void set_enabled(bool b)
-  {
+  { 
     enabledWas = enabled;
     enabled = b;
   }
   namespace balls
   {
   // vars
-  bool bottomBall;
-  bool middleBall;
+  bool feedBall;
   bool topBall;
+  bool middleBall;
 
   // vars FUNCTIONS
 
@@ -186,21 +210,21 @@ namespace automatic{
     {
       topBall = false;
     }
-        if (middle.get_value() < middleBallTal)
+    if (feed.get_value() < feedBallTal)
     {
+      feedBall = true;
+    }
+    else
+    {
+      feedBall = false;
+    }
+
+    if (middle.get_value() < middleBallTal){
       middleBall = true;
     }
-    else
-    {
+
+    else{
       middleBall = false;
-    }
-    if (bottom.get_value() < bottomBallTal)
-    {
-      bottomBall = true;
-    }
-    else
-    {
-      bottomBall = false;
     }
   }
   } // namespace balls
@@ -230,18 +254,11 @@ namespace automatic{
     {
       enabledWas = true;
         if (!balls::topBall) set_v(vIn);
-        else{
-          if(feed2Balls){
-          if(!balls::middleBall)  set_v(vIn);
-          else set_v(vStop);
-        }
-        else{//keep in feed
-          if(!balls::bottomBall && !balls::middleBall)  set_v(vIn);
-          else if (balls::topBall && balls::bottomBall) set_v(vStop);
-          else if (balls::middleBall && balls::topBall) set_v(vStop);
-        }
+        else if(!balls::feedBall && !balls::middleBall) set_v(vIn);
+        else if(!balls::feedBall && balls::middleBall) set_v(vOut);
+        else if(balls::feedBall && !balls::middleBall) set_v(vStop);
+        //else set_v(vStop);
     }
-  }
     else if (enabledWas)
     { // first loop disabled
       set_v(vStop);
@@ -257,6 +274,8 @@ namespace automatic{
       motor.moveVelocity(get_v());
     }
   }
+
+ 
 
 //   void User_Control(){//not needed here combine all inside of the controlmodes
 //     Toggle_Control();
