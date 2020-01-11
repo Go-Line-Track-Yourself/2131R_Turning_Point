@@ -6,4 +6,5 @@ namespace lift{
     void depatchWheeleys();
     void smallTower();
     void liftFlow();
+    void lift();
 }

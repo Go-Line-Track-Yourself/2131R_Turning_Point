@@ -5,7 +5,7 @@ namespace ramp{
 bool pressed = true;
 bool activated = false;
 const int MAX_VEL = 200;
-const double TILT_VALUE = 795;
+const double TILT_VALUE = 805;
 
 void autoScore(){
   double tiltValue = 500;
@@ -36,13 +36,13 @@ void tilter(){
       }
     }
 
-    bool checkRampAngle(){
-      if(Motor.getPosition() <= TILT_VALUE + 10 && Motor.getPosition() >= TILT_VALUE - 10) return true;
-      else return false;
-    }
+    // bool checkRampAngle(){
+    //   if(Motor.getPosition() <= TILT_VALUE + 10 && Motor.getPosition() >= TILT_VALUE - 10) return true;
+    //   else return false;
+    // }
 
     void manual(){
-      if(UpButton.isPressed() && checkRampAngle()){
+      if(UpButton.isPressed()){
         Motor.moveVelocity(MAX_VEL / 5);
       }
       else if(DownButton.isPressed()){

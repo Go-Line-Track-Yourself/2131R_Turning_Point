@@ -21,7 +21,8 @@ void opcontrol() {
 	while(true){
 		// lift::smallTower();
 		// lift::tallTower();
-		lift::liftFlow();
+		// lift::liftFlow();
+		lift::lift();
 		drive::tankDrive();
 		// lift::manual();
 		ramp::tilter();

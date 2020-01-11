@@ -6,8 +6,9 @@ namespace lift{
   const int MAX_VEL = 100;
   const int MAX_POS = 580;
   const int MIN_POS = 0;
-  const int TALL_TOWER = 500;
-  const int SMALL_TOWER = 400;
+  const int TALL_TOWER = 560;
+  const int SMALL_TOWER = 440;
+  const int HOLD_TIME = 2000;
   bool pressed = true;
   bool changed = true;
   bool activated = false;
@@ -15,11 +16,42 @@ namespace lift{
   bool manualControl = false;
   bool toggleControl = true;
 
+  
+
+  // void lift(){
+  //   if(UpButton.isPressed()){
+  //       Motor.moveAbsolute(TALL_TOWER, MAX_VEL);
+  //   }
+  //   if(DownButton.isPressed()){
+  //         Motor.moveAbsolute(0, MAX_VEL);
+  //         ellisonsController.rumble(".");
+  //   }
+  //   if(DownButton.isPressed() && Motor.getPosition() < SMALL_TOWER - 5){
+  //       Motor.moveAbsolute(SMALL_TOWER, MAX_VEL);
+  //   }
+  //   if(DownButton.isPressed() && Motor.getPosition() > SMALL_TOWER + 5){
+  //       Motor.moveAbsolute(SMALL_TOWER, MAX_VEL);
+  //   }
+  // }
+
   void liftFlow(){
-    if(manualControl) manual();
-    else if(toggleControl){
-      smallTower();
-      tallTower();
+    if(UpButton.isPressed() || DownButton.isPressed()){
+      manualControl = true;
+      toggleControl = false;
+      if(manualControl) manual();
+      else if(toggleControl){
+        smallTower();
+        tallTower();
+      }
+    }
+    else if(MaxButton.isPressed() || MinButton.isPressed()){
+      manualControl = false;
+      toggleControl = true;
+      if(manualControl) manual();
+      else if(toggleControl){
+        smallTower();
+        tallTower();
+      }
     }
   }
 
@@ -65,7 +97,7 @@ namespace lift{
             changed = true;
             initiated = !initiated;
 
-            if(initiated) liftTo(MAX_POS, MAX_VEL);
+            if(initiated) liftTo(TALL_TOWER, MAX_VEL);
             if(!initiated) liftTo(0, MAX_VEL);
           }
     }
