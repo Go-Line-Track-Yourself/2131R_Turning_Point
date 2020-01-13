@@ -41,12 +41,12 @@ namespace drive{
        float targetLeft =leftJoyValue;
        float targetRight = rightJoyValue;
        if(targetLeft > leftMotorPower) leftMotorPower+=RAMP_INT;
-      if(targetLeft < leftMotorPower) leftMotorPower-=RAMP_INT;
-      if(targetRight > rightMotorPower) rightMotorPower+=RAMP_INT;
-      if(targetRight < rightMotorPower) rightMotorPower-=RAMP_INT;
-      if(abs(rightMotorPower-targetRight) < RAMP_INT) rightMotorPower = targetRight;
-      if(abs(leftMotorPower-targetLeft) < RAMP_INT) leftMotorPower = targetLeft;
-      if(!intake::BackButton.isPressed()){
+       if(targetLeft < leftMotorPower) leftMotorPower-=RAMP_INT;
+       if(targetRight > rightMotorPower) rightMotorPower+=RAMP_INT;
+       if(targetRight < rightMotorPower) rightMotorPower-=RAMP_INT;
+       if(abs(rightMotorPower-targetRight) < RAMP_INT) rightMotorPower = targetRight;
+       if(abs(leftMotorPower-targetLeft) < RAMP_INT) leftMotorPower = targetLeft;
+       if(!intake::BackButton.isPressed()){
         RightMotors.moveVelocity(rightJoyValue * MAX_VEL);
         LeftMotors.moveVelocity(leftJoyValue * MAX_VEL);
       }

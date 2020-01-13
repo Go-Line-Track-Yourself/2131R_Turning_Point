@@ -9,30 +9,67 @@ namespace lift{
   const int TALL_TOWER = 560;
   const int SMALL_TOWER = 440;
   const int HOLD_TIME = 2000;
+  const int LAG_TIME = 200;
   bool pressed = true;
   bool changed = true;
   bool activated = false;
   bool initiated = false;
   bool manualControl = false;
   bool toggleControl = true;
+  static bool wasPressed;
+  static bool wasPresU;
+  static double initialTimeU;
+  static double initialTimeD;
 
-  
-
-  // void lift(){
-  //   if(UpButton.isPressed()){
-  //       Motor.moveAbsolute(TALL_TOWER, MAX_VEL);
-  //   }
-  //   if(DownButton.isPressed()){
-  //         Motor.moveAbsolute(0, MAX_VEL);
-  //         ellisonsController.rumble(".");
-  //   }
-  //   if(DownButton.isPressed() && Motor.getPosition() < SMALL_TOWER - 5){
-  //       Motor.moveAbsolute(SMALL_TOWER, MAX_VEL);
-  //   }
-  //   if(DownButton.isPressed() && Motor.getPosition() > SMALL_TOWER + 5){
-  //       Motor.moveAbsolute(SMALL_TOWER, MAX_VEL);
-  //   }
-  // }
+  void lift(){
+    if(UpButton.isPressed() && !wasPresU){
+      initialTimeU = pros::millis();
+      wasPresU = true;
+    }
+    else if(UpButton.isPressed()){//donw holding
+      if(pros::millis() - initialTimeU > LAG_TIME){//down hold
+      // ramp::Motor.moveAbsolute(100, MAX_VEL/2);
+        Motor.moveVelocity(MAX_VEL/2);//todo move to else
+      }
+      else{//donw holding les then time
+        // toggleDown();
+      }
+    }
+    else if(!UpButton.isPressed() && wasPresU){//deinit
+      wasPresU = false;
+      if(pros::millis() - initialTimeU > LAG_TIME){//deinit holding
+        Motor.moveVelocity(0);
+      }
+      else {//deinit tog
+        Motor.moveAbsolute(TALL_TOWER, MAX_VEL);
+      }
+    }
+    else if(DownButton.isPressed() && !wasPressed){//down init
+      initialTimeD = pros::millis();
+      wasPressed = true;
+    }
+    else if(DownButton.isPressed()){//donw holding
+      if(pros::millis() - initialTimeD > LAG_TIME){//down hold
+      // ramp::Motor.moveAbsolute(100, MAX_VEL/2);
+        Motor.moveVelocity(-MAX_VEL/2);//todo move to else
+      }
+      else{//donw holding les then time
+        // toggleDown();
+      }
+    }
+    else if(!DownButton.isPressed() && wasPressed){//deinit
+      wasPressed = false;
+      if(pros::millis() - initialTimeD > LAG_TIME){//deinit holding
+        Motor.moveVelocity(0);
+      }
+      else {//deinit tog
+        Motor.moveAbsolute(SMALL_TOWER, MAX_VEL);
+      }
+    }
+    else if(MinButton.isPressed()){
+      Motor.moveAbsolute(0, MAX_VEL);
+    }
+  }
 
   void liftFlow(){
     if(UpButton.isPressed() || DownButton.isPressed()){
@@ -113,8 +150,8 @@ namespace lift{
        double centimeter = 360 / maxHeight;
        height *= centimeter;
 
-       Motor.moveRelative(height, MAX_VEL);
-       Motor.moveRelative(height, MAX_VEL);
+       Motor.moveAbsolute(height, MAX_VEL);
+       Motor.moveAbsolute(height, MAX_VEL);
        pros::delay(BUFFER);
        Motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
        Motor.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);

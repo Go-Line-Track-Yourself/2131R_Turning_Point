@@ -12,25 +12,21 @@ void wait(double time){
 }
 
 void debugging(){
-
-  wait(100);
   intake::autonIntake(-MAX_VEL, true);
-  wait(1000);
-  // drive::Drive(20, -0.75);
-  // wait(100);
-  // lift::depatchWheeleys();
-  // wait(100);
-  intake::autonIntake(MAX_VEL, true);
+  wait(500);
+  lift::autoLift(300);
+  wait(600);
+  lift::autoLift(0);
   wait(100);
-  drive::Drive(110, -0.75);
-  wait(800);
-  drive::Drive(90, 0.75);
-  wait(500);
-  drive::Turn(-14);
-  wait(500);
-  drive::Drive(25, -0.5);
-  wait(500);
-  drive::Turn(-2);
+  intake::autonIntake(MAX_VEL, true);
+  wait(400);
+  drive::Drive(70, -MAX_VEL / 4);
+  wait(1000);
+  drive::Drive(50, MAX_VEL / 2);
+  wait(1000);
+  drive::Turn(12);
+  wait(1000);
+  drive::Drive(70, -MAX_VEL / 4);
   wait(100);
   ramp::autoScore();
 }
@@ -38,15 +34,15 @@ void debugging(){
 void redBack(){
   intake::autonIntake(MAX_VEL, true);
   wait(500);
-  drive::Drive(-50, MAX_VEL / 3);
+  drive::Drive(50, -MAX_VEL / 3);
   wait(1000);
   drive::Drive(30, MAX_VEL / 2);
   wait(1000);
-  drive::Turn(-12 * 360);
-  wait(1000);
-  drive::Drive(-70, MAX_VEL / 4);
-  wait(100);
-  ramp::autoScore();
+  drive::Turn(-12);
+  // wait(1000);
+  // drive::Drive(-70, MAX_VEL / 4);
+  // wait(100);
+  // ramp::autoScore();
 }
 
 void redFront(){
@@ -107,27 +103,38 @@ void blueFront(){
 }
 
 void skills(){
-  wait(100);
   intake::autonIntake(-MAX_VEL, true);
-  wait(800);
+  wait(500);
+  lift::autoLift(300);
+  wait(600);
+  lift::autoLift(0);
+  wait(100);
   intake::autonIntake(MAX_VEL, true);
-  drive::Drive(110, -0.75);
-  wait(500);
-  drive::Turn(-2.6);
-  wait(500);
-  drive::Drive(120, 0.75);
-  wait(500);
-  drive::Turn(2);
-  wait(500);
-  drive::Drive(100, -0.75);
-  wait(500);
-  drive::Drive(100, 0.75);
-  wait(500);
-  drive::Turn(9.5);
-  wait(500);
-  drive::Drive(30, -0.75);
-  wait(500);
+  wait(400);
+  drive::Drive(200, -MAX_VEL / 4);
+  wait(100);
+  drive::Turn(15);
+  wait(200);
+  drive::Drive(30, -MAX_VEL/4);
+  wait(200);
   ramp::autoScore();
+  wait(3000);
+  drive::Drive(30, -MAX_VEL/2);
+  wait(200);
+  drive::Turn(-12);
+  wait(200);
+  drive::Drive(50, MAX_VEL/4);
+  wait(200);
+  drive::Turn(10);
+  wait(200);
+  drive::Drive(10, MAX_VEL/4);
+  wait(200);
+  ramp::autoScore();
+  wait(2000);
+  drive::Drive(15, -MAX_VEL/2);
+  wait(200);
+  drive::Turn(-15);
+  //tower with lift function and intake function
 }
 
 void onePoint(){
