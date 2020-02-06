@@ -18,6 +18,7 @@ namespace drive{
 //lift motors
 namespace lift{
   extern okapi::Motor Motor;
+  extern pros::ADIAnalogIn Sensor;
 }
 
 //ramp motor
@@ -30,7 +31,6 @@ namespace intake{
   extern okapi::Motor LeftMotor;
   extern okapi::Motor RightMotor;
   extern okapi::MotorGroup Motors;
-  extern pros::ADIAnalogIn Sensor;
 }
 
 extern okapi::MotorGroup backOutMotors;

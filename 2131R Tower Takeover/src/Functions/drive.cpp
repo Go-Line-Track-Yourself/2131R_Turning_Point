@@ -1,9 +1,10 @@
 #include "main.h"
 
 namespace drive{
+  //drive variables
   const double CENTIMETER = 360 / (10.5 * 3.141592628);
   const int MAX_VEL = 150;
-  const double RAMP_INT = 0.08;
+  const double RAMP_INT = 0.04;
   const double TOLERANCE = 0.08;
   const double TURN_VEL_PROP = 0.75;
   const double RECON_DIS = 10;
@@ -17,6 +18,7 @@ namespace drive{
   float autonRightMotorPower = 0;
   float autonLeftMotorPower = 0;
 
+  //method to average numbers
   double avg(double numOne, double numTwo){
     double sum = numOne + numTwo;
     double averageVal = sum / 2;
@@ -33,9 +35,10 @@ namespace drive{
      return a * pow(input, 2) + b * input + c;
    }
 
+   //user control drive with ramping
     void tankDrive(){
-       double leftJoyValue = ((-ellisonsController.getAnalog(okapi::ControllerAnalog::leftY)));
-       double rightJoyValue = ((-ellisonsController.getAnalog(okapi::ControllerAnalog::rightY)));
+      double leftJoyValue = ((-ellisonsController.getAnalog(okapi::ControllerAnalog::leftY)));
+      double rightJoyValue = ((-ellisonsController.getAnalog(okapi::ControllerAnalog::rightY)));
        if(abs(rightJoyValue) < TOLERANCE) rightJoyValue = 0;
        if(abs(leftJoyValue) < TOLERANCE) leftJoyValue = 0;
        float targetLeft =leftJoyValue;
@@ -47,13 +50,13 @@ namespace drive{
        if(abs(rightMotorPower-targetRight) < RAMP_INT) rightMotorPower = targetRight;
        if(abs(leftMotorPower-targetLeft) < RAMP_INT) leftMotorPower = targetLeft;
        if(!intake::BackButton.isPressed()){
-        RightMotors.moveVelocity(rightJoyValue * MAX_VEL);
-        LeftMotors.moveVelocity(leftJoyValue * MAX_VEL);
+       RightMotors.moveVelocity(rightJoyValue * MAX_VEL);
+       LeftMotors.moveVelocity(leftJoyValue * MAX_VEL);
       }
       else if(intake::BackButton.isPressed()) Motors.moveVelocity(MAX_VEL / 5);
-
   }
 
+    //autonomous drive function
      void Drive(double input, double pctVel){
        RightMotors.tarePosition();
        LeftMotors.tarePosition();
@@ -84,6 +87,7 @@ namespace drive{
        }
       }
 
+      //method to set velocity
       void turn(int rightPower, int leftPower){
         RightMotors.moveVelocity(rightPower);
         LeftMotors.moveVelocity(leftPower);

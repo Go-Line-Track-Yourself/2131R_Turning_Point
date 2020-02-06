@@ -10,6 +10,7 @@ namespace lift{
   const int SMALL_TOWER = 440;
   const int HOLD_TIME = 2000;
   const int LAG_TIME = 200;
+  const int SENSOR_VAL = 2200;
   bool pressed = true;
   bool changed = true;
   bool activated = false;
@@ -26,10 +27,9 @@ namespace lift{
       initialTimeU = pros::millis();
       wasPresU = true;
     }
-    else if(UpButton.isPressed()){//donw holding
+    else if(UpButton.isPressed()){//down holding
       if(pros::millis() - initialTimeU > LAG_TIME){//down hold
-      // ramp::Motor.moveAbsolute(100, MAX_VEL/2);
-        Motor.moveVelocity(MAX_VEL/2);//todo move to else
+        Motor.moveVelocity(MAX_VEL/2);
       }
       else{//donw holding les then time
         // toggleDown();
@@ -44,33 +44,40 @@ namespace lift{
         Motor.moveAbsolute(TALL_TOWER, MAX_VEL);
       }
     }
-    else if(DownButton.isPressed() && !wasPressed){//down init
+    else if(DownButton.isPressed() && !wasPressed){//holding initialize
       initialTimeD = pros::millis();
       wasPressed = true;
     }
-    else if(DownButton.isPressed()){//donw holding
+    else if(DownButton.isPressed()){//holding
       if(pros::millis() - initialTimeD > LAG_TIME){//down hold
-      // ramp::Motor.moveAbsolute(100, MAX_VEL/2);
         Motor.moveVelocity(-MAX_VEL/2);//todo move to else
       }
-      else{//donw holding les then time
+      else{//holding less than time
         // toggleDown();
       }
     }
-    else if(!DownButton.isPressed() && wasPressed){//deinit
+    else if(!DownButton.isPressed() && wasPressed){//deinitialize
       wasPressed = false;
-      if(pros::millis() - initialTimeD > LAG_TIME){//deinit holding
+      if(pros::millis() - initialTimeD > LAG_TIME){//deinitialize holding
         Motor.moveVelocity(0);
       }
-      else {//deinit tog
+      else {//deinitialize the toggle
         Motor.moveAbsolute(SMALL_TOWER, MAX_VEL);
       }
     }
     else if(MinButton.isPressed()){
+      // if(Sensor.get_value() > SENSOR_VAL) Motor.moveVelocity(-MAX_VEL);
+      // else Motor.moveVelocity(0);
+      // while(Sensor.get_value() > SENSOR_VAL){
+      //    Motor.moveVelocity(-MAX_VEL);
+      // }
+      //   Motor.moveVelocity(0);
+      // }
       Motor.moveAbsolute(0, MAX_VEL);
-    }
   }
+}
 
+  //main flow method for lifting
   void liftFlow(){
     if(UpButton.isPressed() || DownButton.isPressed()){
       manualControl = true;
@@ -92,6 +99,7 @@ namespace lift{
     }
   }
 
+  //manual method to use if Matt wants to go full manual
   void manual(){
         if(UpButton.isPressed()){
             ramp::Motor.moveAbsolute(100, MAX_VEL/2);
@@ -109,11 +117,13 @@ namespace lift{
         }
     }
 
+    //quicker lift method
     void liftTo(double position, double velocity){
       Motor.moveAbsolute(position, velocity);
       pros::delay(500);
     }
 
+    //testing method
     void smallTower(){
       if(pressed && MinButton.isPressed()){
             pressed = false;
@@ -126,6 +136,8 @@ namespace lift{
             if(!activated) liftTo(0, MAX_VEL);
           }
     }
+
+    //testing method
     void tallTower(){
       if(changed && MaxButton.isPressed()){
             changed = false;
@@ -139,12 +151,7 @@ namespace lift{
           }
     }
 
-    void depatchWheeleys(){
-      Motor.moveRelative(12000, MAX_VEL/1.25);
-      pros::delay(300);
-      Motor.moveRelative(-12000, MAX_VEL/1.25);
-    }
-
+     //lift up method used in autonomous
      void autoLift(double height){
        double maxHeight = 63.5;
        double centimeter = 360 / maxHeight;
