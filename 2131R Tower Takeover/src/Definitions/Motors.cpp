@@ -4,8 +4,8 @@ okapi::Controller ellisonsController(okapi::ControllerId::master);
 
 //drive motors
 namespace drive{
-  okapi::Motor RightBackMotor(12,false,okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
-  okapi::Motor RightFrontMotor(13,true,okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
+  okapi::Motor RightBackMotor(14,false,okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
+  okapi::Motor RightFrontMotor(12,true,okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
   okapi::Motor LeftBackMotor(20,true,okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
   okapi::Motor LeftFrontMotor(19,false,okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
   okapi::MotorGroup LeftMotors({LeftBackMotor, LeftFrontMotor});
@@ -27,7 +27,7 @@ namespace ramp{
 //intake Motors
 namespace intake{
   okapi::Motor LeftMotor(10,false,okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
-  okapi::Motor RightMotor(14,true,okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
+  okapi::Motor RightMotor(13,true,okapi::AbstractMotor::gearset::green, okapi::AbstractMotor::encoderUnits::degrees);
   okapi::MotorGroup Motors({LeftMotor, RightMotor});
   pros::ADIAnalogIn Sensor(2);
 }

@@ -73,7 +73,7 @@ namespace lift{
       // }
       //   Motor.moveVelocity(0);
       // }
-      Motor.moveAbsolute(0, MAX_VEL);
+      Motor.moveAbsolute(-15, MAX_VEL);
   }
 }
 
